@@ -1,46 +1,181 @@
-/*
-Error: File to import not found or unreadable: fonts/FontsSass.sass.
-        on line 1 of style.sass
+@font-face {
+  font-family: "Lato-Black";
+  src: url("./fonts/Lato-Black/Lato-Black.eot");
+  src: url("./fonts/Lato-Black/Lato-Black.ttf");
+  src: url("./fonts/Lato-Black/Lato-Black.woff"); }
+@font-face {
+  font-family: "Lato-Bold";
+  src: url("./fonts/Lato-Bold/Lato-Bold.eot");
+  src: url("./fonts/Lato-Bold/Lato-Bold.ttf");
+  src: url("./fonts/Lato-Bold/Lato-Bold.woff"); }
+@font-face {
+  font-family: "Lato-Regular";
+  src: url("./fonts/Lato-Regular/Lato-Regular.eot");
+  src: url("./fonts/Lato-Regular/Lato-Regular.ttf");
+  src: url("./fonts/Lato-Regular/Lato-Regular.woff"); }
+@font-face {
+  font-family: "MavenProRegular";
+  src: url("./fonts/MavenProRegular/MavenProRegular.eot");
+  src: url("./fonts/MavenProRegular/MavenProRegular.ttf");
+  src: url("./fonts/MavenProRegular/MavenProRegular.woff"); }
+.container {
+  max-width: 980px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 15px;
+  padding-left: 15px; }
 
-1: @import "fonts/FontsSass.sass"
+.header {
+  background-color: #323232; }
 
-Backtrace:
-style.sass:1
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/import_node.rb:67:in `rescue in import'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/import_node.rb:44:in `import'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/import_node.rb:28:in `imported_file'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/import_node.rb:37:in `css_import?'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:310:in `visit_import'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/stack.rb:79:in `block in with_base'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/stack.rb:135:in `with_frame'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/stack.rb:79:in `with_base'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:158:in `visit'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/base.rb:52:in `map'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:157:in `visit'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/visitors/perform.rb:10:in `visit'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/root_node.rb:36:in `css_tree'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/engine.rb:389:in `_render_with_sourcemap'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/engine.rb:307:in `render_with_sourcemap'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/exec/sass_scss.rb:387:in `run'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/exec/sass_scss.rb:63:in `process_result'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/exec/base.rb:50:in `parse'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/lib/sass/exec/base.rb:18:in `parse!'
-C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/sass-3.7.3/bin/sass:13:in `<top (required)>'
-C:/Ruby26-x64/bin/sass:23:in `load'
-C:/Ruby26-x64/bin/sass:23:in `<main>'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: File to import not found or unreadable: fonts/FontsSass.sass.\A         on line 1 of style.sass\A \A 1: @import \"fonts/FontsSass.sass\""; }
+.header__nav {
+  text-align: center; }
+
+.header__nav__ul {
+  margin: 0;
+  padding: 0; }
+
+.header__nav__ul__li {
+  display: inline-block;
+  margin-right: 25px;
+  vertical-align: middle; }
+  .header__nav__ul__li a {
+    font-size: 10px;
+    color: #ffffff;
+    font-family: Lato-Bold, sans-serif;
+    text-decoration: none; }
+
+.logo {
+  position: relative; }
+  .logo:after {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 59px;
+    width: 0;
+    height: 0;
+    border-left: 45px solid transparent;
+    border-right: 45px solid transparent;
+    border-top: 25px solid #323232;
+    clear: both; }
+
+.portfolio {
+  display: flex;
+  flex-wrap: wrap; }
+  .portfolio .portfolio__item {
+    flex: 0 0 20%; }
+    .portfolio .portfolio__item:nth-child(0n+6), .portfolio .portfolio__item:nth-child(0n+15) {
+      margin-left: 10%; }
+
+.section-1 .test {
+  background-color: #4f9ea0;
+  color: #ffffff;
+  width: 180px;
+  height: 200px;
+  -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  text-align: center;
+  display: flex;
+  align-items: center; }
+.section-1 img {
+  width: 180px;
+  height: 200px;
+  position: absolute;
+  transition: 0.75s;
+  transform-origin: 0% 50%; }
+
+.section-2 {
+  background-color: #2eb398;
+  display: flex; }
+
+.about {
+  display: flex;
+  padding: 70px 0; }
+
+.about__photo {
+  flex: 0 0 20%;
+  padding: 0 20px; }
+
+.about__text h2 {
+  padding: 0;
+  margin: 0;
+  font-size: 30px;
+  color: #d7fcf5;
+  font-family: MavenProRegular, sans-serif; }
+.about__text span {
+  color: #20816d;
+  font-size: 18px;
+  font-family: MavenProRegular, sans-serif; }
+.about__text p {
+  font-size: 12px;
+  color: #d7fcf5;
+  font-family: Lato-Regular, sans-serif; }
+
+.about__photo__article {
+  background-color: #4f9ea0;
+  color: #ffffff;
+  width: 180px;
+  height: 200px;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+  text-align: center;
+  display: flex;
+  align-items: center; }
+  .about__photo__article figure {
+    padding: 0 0.5em; }
+  .about__photo__article img {
+    width: 180px;
+    height: 200px;
+    position: absolute;
+    transition: 0.75s;
+    transform-origin: 0% 50%; }
+    .about__photo__article img:hover {
+      transform: translate(6%, -6%) rotate(-140deg); }
+
+.section-3 {
+  background-color: #323232; }
+
+.section-3__block-form {
+  padding: 68px 0; }
+
+.section-3__block-form__title h2 {
+  font-size: 30px;
+  color: #e0e0e0;
+  font-family: MavenProRegular, sans-serif;
+  margin: 0;
+  padding: 0; }
+.section-3__block-form__title span {
+  font-size: 18px;
+  color: #bebebe;
+  font-family: MavenProRegular, sans-serif; }
+
+.section-3__block-form__form input, .section-3__block-form__form textarea {
+  width: calc(100% - 32px);
+  margin-bottom: 16px;
+  background-color: #454545;
+  padding: 16px;
+  border: none;
+  color: #bebebe;
+  font-size: 12px;
+  font-family: Lato-Regular, sans-serif; }
+  .section-3__block-form__form input:focus, .section-3__block-form__form textarea:focus {
+    outline: none; }
+  .section-3__block-form__form input:first-child, .section-3__block-form__form textarea:first-child {
+    margin-top: 16px; }
+.section-3__block-form__form input[type=submit] {
+  font-size: 12px;
+  color: #d7fcf5;
+  font-family: Lato-Bold, sans-serif;
+  background-color: #2eb398;
+  width: 90px;
+  float: right; }
+
+.footer {
+  background-color: #222222;
+  padding: 18px 0; }
+  .footer span {
+    color: #454545;
+    font-size: 12px;
+    font-family: MavenProRegular, sans-serif; }
+
+/*# sourceMappingURL=style.css.map */
