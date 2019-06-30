@@ -74,12 +74,13 @@
   display: flex;
   flex-wrap: wrap;
   padding: 90px 0; }
-  .portfolio .portfolio__item {
-    flex: 0 0 20%; }
-    .portfolio .portfolio__item:nth-child(0n+6), .portfolio .portfolio__item:nth-child(0n+15) {
-      margin-left: 10%; }
 
-.section-1 .portfolio__item__art {
+.portfolio__item {
+  flex: 0 0 20%; }
+  .portfolio__item:nth-child(0n+6), .portfolio__item:nth-child(0n+15) {
+    margin-left: 10%; }
+
+.portfolio__item__art {
   background-color: #4f9ea0;
   color: #ffffff;
   width: 180px;
@@ -89,15 +90,15 @@
   text-align: center;
   display: flex;
   align-items: center; }
-  .section-1 .portfolio__item__art:hover {
+  .portfolio__item__art:hover {
     transition: 0.5s;
     transform: scale(1.1); }
-.section-1 img {
-  width: 180px;
-  height: 200px;
-  position: absolute;
-  transition: 0.75s;
-  transform-origin: 0% 50%; }
+  .portfolio__item__art img {
+    width: 180px;
+    height: 200px;
+    position: absolute;
+    transition: 0.75s;
+    transform-origin: 0% 50%; }
 
 .section-2 {
   background-color: #2eb398;
@@ -238,5 +239,62 @@
     color: #454545;
     font-size: 12px;
     font-family: MavenProRegular, sans-serif; }
+
+@media only screen and (max-width: 768px) {
+  .header__nav {
+    text-align: left; }
+
+  .header__nav__ul__li {
+    display: block; }
+
+  .logo {
+    display: none; }
+
+  .section-1 {
+    background-color: #fff; }
+
+  .portfolio {
+    padding: 0; }
+
+  .portfolio__item {
+    flex: 0 0 33%;
+    display: flex;
+    justify-content: center; }
+    .portfolio__item:nth-child(0n+6), .portfolio__item:nth-child(0n+15) {
+      margin-left: 0; }
+
+  .portfolio__item__art {
+    width: 125px;
+    height: 150px; }
+    .portfolio__item__art img {
+      width: 125px;
+      height: 150px; }
+
+  .about {
+    flex-wrap: wrap;
+    padding: 0; }
+
+  .about__photo {
+    margin: 0 auto; }
+
+  .about__info {
+    text-align: center; }
+
+  .about__info__social {
+    justify-content: center; }
+
+  .section-3__feedback {
+    flex-wrap: wrap; }
+
+  .section-3__feedback__get-in {
+    flex: 0 0 100%; }
+
+  .submit {
+    width: 100%; } }
+@media only screen and (max-width: 568px) {
+  .portfolio__item {
+    flex: 0 0 50%;
+    display: flex;
+    justify-content: center; } }
 
 /*# sourceMappingURL=style.css.map */
