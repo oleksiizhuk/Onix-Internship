@@ -238,6 +238,16 @@
     font-size: 12px;
     font-family: MavenProRegular, sans-serif; }
 
+@media only screen and (max-width: 992px) {
+  .portfolio__item {
+    flex: 0 0 33%;
+    display: flex;
+    justify-content: center; }
+    .portfolio__item:nth-child(0n+6), .portfolio__item:nth-child(0n+15) {
+      margin-left: 0; }
+
+  .portfolio {
+    padding: 0; } }
 @media only screen and (max-width: 768px) {
   .header__nav {
     text-align: left; }

@@ -2,6 +2,15 @@
 
 @media only screen and (max-width: 992px)
 
+  .portfolio__item
+    flex: 0 0 33%
+    display: flex
+    justify-content: center
+    &:nth-child(0n+6), &:nth-child(0n+15)
+      margin-left: 0
+  .portfolio
+    padding: 0
+
 @media only screen and (max-width: 768px)
   .header__nav
     text-align: left
