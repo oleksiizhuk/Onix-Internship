@@ -1,9 +1,15 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import Portfolio from './portfolio'
+import About from './about';
+import GetInTouch from './getInTouch';
 
 function body() {
-    return(
-        <Portfolio/>
+    return (
+        <Fragment>
+            <Portfolio/>
+            <About/>
+            <GetInTouch/>
+        </Fragment>
     )
 }
 
