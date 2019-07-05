@@ -1,4 +1,18 @@
 import React from 'react';
+import img1 from '../../../images/honeycomb/1.png';
+import img2 from '../../../images/honeycomb/2.png';
+import img3 from '../../../images/honeycomb/3.png';
+import img4 from '../../../images/honeycomb/4.png';
+import img5 from '../../../images/honeycomb/5.png';
+import img6 from '../../../images/honeycomb/6.png';
+import img7 from '../../../images/honeycomb/7.png';
+import img8 from '../../../images/honeycomb/8.png';
+import img9 from '../../../images/honeycomb/9.png';
+import img10 from '../../../images/honeycomb/10.png';
+import img11 from '../../../images/honeycomb/11.png';
+import img12 from '../../../images/honeycomb/12.png';
+import img13 from '../../../images/honeycomb/13.png';
+
 
 function portfolio() {
     return(
@@ -7,72 +21,72 @@ function portfolio() {
                 <div className="portfolio">
                     <div className="portfolio__item">
                         <div className="portfolio__item__art">
-                            <img src="img/honeycomb/1.png" />
+                            <img src={img1} />
                         </div>
                     </div>
                     <div className="portfolio__item">
                         <div className="portfolio__item__art">
-                            <img src="img/honeycomb/2.png"/>
+                            <img src={img2}/>
                         </div>
                     </div>
                     <div className="portfolio__item">
                         <div className="portfolio__item__art">
-                            <img src="img/honeycomb/3.png"/>
+                            <img src={img3}/>
                         </div>
                     </div>
                     <div className="portfolio__item">
                         <div className="portfolio__item__art">
-                            <img src="img/honeycomb/4.png"/>
+                            <img src={img4}/>
                         </div>
                     </div>
                     <div className="portfolio__item">
                         <div className="portfolio__item__art">
-                            <img src="img/honeycomb/5.png"/>
+                            <img src={img5}/>
                         </div>
                     </div>
                     <div className="portfolio__item">
                         <div className="portfolio__item__art">
-                            <img src="img/honeycomb/6.png"/>
+                            <img src={img6}/>
                         </div>
                     </div>
                     <div className="portfolio__item">
                         <div className="portfolio__item__art">
-                            <img src="img/honeycomb/7.png"/>
+                            <img src={img7}/>
                         </div>
                     </div>
                     <div className="portfolio__item">
                         <div className="portfolio__item__art">
-                            <img src="img/honeycomb/8.png"/>
+                            <img src={img8}/>
                         </div>
                     </div>
                     <div className="portfolio__item">
                         <div className="portfolio__item__art">
-                            <img src="img/honeycomb/9.png"/>
+                            <img src={img9}/>
                         </div>
                     </div>
                     <div className="portfolio__item">
                         <div className="portfolio__item__art">
-                            <img src="img/honeycomb/10.png"/>
+                            <img src={img10}/>
                         </div>
                     </div>
                     <div className="portfolio__item">
                         <div className="portfolio__item__art">
-                            <img src="img/honeycomb/11.png"/>
+                            <img src={img11}/>
                         </div>
                     </div>
                     <div className="portfolio__item">
                         <div className="portfolio__item__art">
-                            <img src="img/honeycomb/12.png"/>
+                            <img src={img12}/>
                         </div>
                     </div>
                     <div className="portfolio__item">
                         <div className="portfolio__item__art">
-                            <img src="img/honeycomb/13.png"/>
+                            <img src={img13}/>
                         </div>
                     </div>
                     <div className="portfolio__item">
                         <div className="portfolio__item__art">
-                            <img src="img/honeycomb/2.png"/>
+                            <img src={img4}/>
                         </div>
                     </div>
                 </div>
