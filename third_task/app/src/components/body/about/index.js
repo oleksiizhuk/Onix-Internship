@@ -13,7 +13,7 @@ function about() {
                                 <h2>Oleksii</h2>
                                 <p>I am a frontend web developer</p>
                             </figure>
-                            <img src={MyPhoto}/>
+                            <img src={MyPhoto} alt="It's me :)"/>
                         </article>
                     </div>
 
