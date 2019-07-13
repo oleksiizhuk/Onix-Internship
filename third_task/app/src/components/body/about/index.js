@@ -5,9 +5,7 @@ import PropTypes from 'prop-types';
 
 function about(props) {
 
-
-    const prop = this.props;
-    console.log(prop);
+    console.log(props);
 
     return (
         <div className="section-2" id="section-2">
