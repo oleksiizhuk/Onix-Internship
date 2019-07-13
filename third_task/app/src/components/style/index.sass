@@ -1,3 +1,4 @@
+@import "mixins/mixins.sass"
 @import "fonts/fonts.sass"
 @import "normalize/normalize.css"
 
@@ -31,6 +32,7 @@
   display: inline-block
   margin-right: 25px
   vertical-align: middle
+  cursor: pointer
 
   a
     font-size: 10px
@@ -57,12 +59,12 @@
     clear: both
 
 .portfolio
-  display: flex
-  flex-wrap: wrap
+  +display-flex
+  +flex-wrap(wrap)
   padding: 90px 0
 
 .portfolio__item
-  flex: 0 0 20%
+  +flex(0 0 20%)
 
   &:nth-child(0n+6), &:nth-child(0n+15)
     margin-left: 10%
@@ -75,30 +77,30 @@
   height: 200px
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)
   text-align: center
-  display: flex
+  +display-flex
   align-items: center
 
   &:hover
     transition: 0.5s
-    transform: scale(1.1)
+    +transform-scale(1.1)
 
   img
     width: 180px
     height: 200px
     position: absolute
     transition: 0.75s
-    transform-origin: 0 50%
+    +transform-origin(0 50%)
 
 .section-2
   background-color: #2eb398
   display: flex
 
 .about
-  display: flex
+  +display-flex
   padding: 70px 0
 
 .about__photo
-  flex: 0 0 20%
+  +flex(0 0 20%)
   padding: 0 20px
 
 .about__photo__article
@@ -108,7 +110,7 @@
   height: 200px
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)
   text-align: center
-  display: flex
+  +display-flex
   align-items: center
 
   figure
@@ -119,7 +121,7 @@
     height: 200px
     position: absolute
     transition: 0.75s
-    transform-origin: 0 50%
+    +transform-origin(0 50%)
 
     &:hover
       transform: translate(6%, -6%) rotate(-140deg)
@@ -143,8 +145,8 @@
     font-family: Lato-Regular, sans-serif
 
 .about__info__social
-  display: flex
-  justify-content: flex-end
+  +display-flex
+  +justify-content(flex-end)
   padding-top: 5%
 
 .about__info__social__item
@@ -168,11 +170,11 @@
   background-color: #323232
 
 .section-3__feedback
-  display: flex
+  +display-flex
   padding: 68px 0
 
 .section-3__feedback__get-in
-  flex: 0 0 75%
+  +flex(0 0 75%)
 
 .section-3__feedback__get-in__title
   h2

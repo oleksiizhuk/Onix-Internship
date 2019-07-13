@@ -1,11 +1,12 @@
 import React from 'react';
+//import { FontAwesomeIcon } from "../../../../node_modules/@fortawesome/react-fontawesome";
 
 function getInTouch() {
     return (
         <div className="section-3" id="section-3">
+
             <div className="container">
                 <div className="section-3__feedback">
-
                     <div className="section-3__feedback__get-in">
                         <div className="section-3__feedback__get-in__title">
                             <h2>Get in Touch</h2>
@@ -31,7 +32,8 @@ function getInTouch() {
                             tortor
                             luctus faucibus morbi vitae. </p>
                         <p className="section-3__feedback__contact_info__contact">
-                            <i className="fas fa-map-marker-alt"/> <span>Elm St. 14/05 Lost City</span>
+                            <i className="fas fa-map-marker-alt"/>
+                            <span>Elm St. 14/05 Lost City</span>
                         </p>
                         <p className="section-3__feedback__contact_info__contact">
                             <i className="fas fa-phone"/> <span>+ 3528 331 86 35</span>

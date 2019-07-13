@@ -1,5 +1,6 @@
 import React from 'react';
 import Logo from '../../images/logo.png';
+import { Link } from "react-scroll";
 
 function header() {
 
@@ -8,15 +9,41 @@ function header() {
             <div className="container">
                 <nav className="header__nav">
                     <ul className="header__nav__ul">
-                        <li className="header__nav__ul__li"><a href="#section-1">PORTFOLIO</a></li>
-                        <li className="header__nav__ul__li"><a href="#section-2">ABOUT</a></li>
+                        <li className="header__nav__ul__li">
+                            {/*<a href={"#section-1"}>PORTFOLIO</a>*/}
+                            <Link activeClass="active" to="section-1"
+                                  duration={1000}
+                                  spy={true}
+                                  smooth={true}
+                                  offset={-0}>
+                                PORTFOLIO
+                            </Link>
+                        </li>
+                        <li className="header__nav__ul__li">
+                            {/*<a href="#section-2">ABOUT</a>*/}
+                            <Link activeClass="active" to="section-2"
+                                  duration={1000}
+                                  spy={true}
+                                  smooth={true}
+                                  offset={-0}>
+                                ABOUT
+                            </Link>
+                        </li>
                         <li className="header__nav__ul__li logo">
-                            <a href="#">
+                            <a href="/">
                                 <img src={Logo} alt="logo"/>
                             </a>
                         </li>
-                        <li className="header__nav__ul__li"><a href="#">BLOG</a></li>
-                        <li className="header__nav__ul__li"><a href="#section-3">GET IN TOUCH</a></li>
+                        <li className="header__nav__ul__li"><a href="/">BLOG</a></li>
+                        <li className="header__nav__ul__li">
+                            <Link activeClass="active" to="section-3"
+                                  duration={1000}
+                                  spy={true}
+                                  smooth={true}
+                                  offset={-0}>
+                                GET IN TOUCH
+                            </Link>
+                        </li>
                     </ul>
                 </nav>
             </div>

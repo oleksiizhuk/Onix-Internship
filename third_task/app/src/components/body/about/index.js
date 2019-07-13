@@ -1,7 +1,14 @@
 import React from 'react';
 import MyPhoto from '../../../images/my-photo.jpg';
+import PropTypes from 'prop-types';
 
-function about() {
+
+function about(props) {
+
+
+    const prop = this.props;
+    console.log(prop);
+
     return (
         <div className="section-2" id="section-2">
             <div className="container">
@@ -13,7 +20,7 @@ function about() {
                                 <h2>Oleksii</h2>
                                 <p>I am a frontend web developer</p>
                             </figure>
-                            <img src={MyPhoto}/>
+                            <img src={MyPhoto} alt="It's me :)"/>
                         </article>
                     </div>
 
@@ -21,12 +28,8 @@ function about() {
                         <div className="about__info__text">
                             <h2>Oleksii Zhuk</h2>
                             <span>frontend web developer</span>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eligendi ex explicabo illum
-                                iure
-                                laudantium omnis rem repudiandae sapiente similique! Accusamus at consequuntur deserunt
-                                ea
-                                eligendi
-                                incidunt quibusdam reiciendis, repudiandae.</p>
+                            <p>interests: </p>
+                            <p>еуые</p>
                         </div>
 
                         <div className="about__info__social">
