@@ -1,8 +1,8 @@
 import React from 'react';
 import Logo from '../../images/logo.png';
-import { Link } from "react-scroll";
+import {Link} from "react-scroll";
 
-function header() {
+const header = () => {
 
     return (
         <header className="header">
@@ -10,7 +10,6 @@ function header() {
                 <nav className="header__nav">
                     <ul className="header__nav__ul">
                         <li className="header__nav__ul__li">
-                            {/*<a href={"#section-1"}>PORTFOLIO</a>*/}
                             <Link activeClass="active" to="section-1"
                                   duration={1000}
                                   spy={true}
@@ -20,7 +19,6 @@ function header() {
                             </Link>
                         </li>
                         <li className="header__nav__ul__li">
-                            {/*<a href="#section-2">ABOUT</a>*/}
                             <Link activeClass="active" to="section-2"
                                   duration={1000}
                                   spy={true}
@@ -49,6 +47,6 @@ function header() {
             </div>
         </header>
     )
-}
+};
 
 export default header;

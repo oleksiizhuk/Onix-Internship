@@ -14,7 +14,7 @@ import img12 from '../../../images/honeycomb/12.png';
 import img13 from '../../../images/honeycomb/13.png';
 
 
-function portfolio(props) {
+const portfolio = () => {
     return(
         <div className="section-1" id="section-1">
             <div className="container-portfolio">
@@ -93,6 +93,6 @@ function portfolio(props) {
             </div>
         </div>
     )
-}
+};
 
 export default portfolio;

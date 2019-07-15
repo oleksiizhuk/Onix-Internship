@@ -1,7 +1,6 @@
 import React from 'react';
-//import { FontAwesomeIcon } from "../../../../node_modules/@fortawesome/react-fontawesome";
 
-function getInTouch() {
+const getInTouch = () => {
     return (
         <div className="section-3" id="section-3">
 
@@ -46,6 +45,6 @@ function getInTouch() {
             </div>
         </div>
     )
-}
+};
 
 export default getInTouch;
