@@ -4,19 +4,21 @@ import MyPhoto from '../../../images/my-photo.jpg';
 
 const about = (props) => {
 
-    const name = props.date.person[0].name;
-    const surname = props.date.person[0].surname;
-    const age = props.date.person[0].age;
-    const city = props.date.person[0].city;
-    const interests = props.date.person[0].interests;
-    const hobby = props.date.person[0].hobby;
-    const job = props.date.person[0].job;
-    const fb = props.date.person[0].social[0].fb;
-    const twitter = props.date.person[0].social[0].twitter;
-    const gMail = props.date.person[0].social[0].gMail;
-    const github = props.date.person[0].social[0].github;
-    const linkedIn = props.date.person[0].social[0].linkedIn;
+    /*  const name = props.date.person[0].name;
+      const surname = props.date.person[0].surname;
+      const age = props.date.person[0].age;
+      const city = props.date.person[0].city;
+      const interests = props.date.person[0].interests;
+      const hobby = props.date.person[0].hobby;
+      const job = props.date.person[0].job;
+      const fb = props.date.person[0].social[0].fb;
+      const twitter = props.date.person[0].social[0].twitter;
+      const gMail = props.date.person[0].social[0].gMail;
+      const github = props.date.person[0].social[0].github;
+      const linkedIn = props.date.person[0].social[0].linkedIn;*/
 
+    let {name, surname, age, city, interests, hobby, job,
+        social: {fb, twitter, gMail, github, linkedIn} = {}} = props.date.person;
     return (
         <div className="section-2" id="section-2">
             <div className="container">
@@ -48,7 +50,7 @@ const about = (props) => {
 
                         <div className="about__info__social">
                             <div className="about__info__social__item">
-                                <a href= {fb}>
+                                <a href={fb}>
                                     <i className="fab fa-facebook-f"/>
                                 </a>
                             </div>
