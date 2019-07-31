@@ -6,8 +6,9 @@ const about = (props) => {
 
     const {
         name, surname, age, city, interests, hobby, job,
-        social: {fb, twitter, gMail, github, linkedIn} = {}
+        social: {fb , twitter, gMail, github, linkedIn}
     } = props.date.person;
+
     return (
         <div className="section-2" id="section-2">
             <div className="container">
