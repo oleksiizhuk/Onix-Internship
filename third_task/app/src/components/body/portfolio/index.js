@@ -1,17 +1,18 @@
 import React from 'react';
-import img1 from '../../../images/honeycomb/1.png';
-import img2 from '../../../images/honeycomb/2.png';
-import img3 from '../../../images/honeycomb/3.png';
-import img4 from '../../../images/honeycomb/4.png';
-import img5 from '../../../images/honeycomb/5.png';
-import img6 from '../../../images/honeycomb/6.png';
-import img7 from '../../../images/honeycomb/7.png';
-import img8 from '../../../images/honeycomb/8.png';
-import img9 from '../../../images/honeycomb/9.png';
-import img10 from '../../../images/honeycomb/10.png';
-import img11 from '../../../images/honeycomb/11.png';
-import img12 from '../../../images/honeycomb/12.png';
-import img13 from '../../../images/honeycomb/13.png';
+
+import img1 from '../../../assets/honeycomb/1.png';
+import img2 from '../../../assets/honeycomb/2.png';
+import img3 from '../../../assets/honeycomb/3.png';
+import img4 from '../../../assets/honeycomb/4.png';
+import img5 from '../../../assets/honeycomb/5.png';
+import img6 from '../../../assets/honeycomb/6.png';
+import img7 from '../../../assets/honeycomb/7.png';
+import img8 from '../../../assets/honeycomb/8.png';
+import img9 from '../../../assets/honeycomb/9.png';
+import img10 from '../../../assets/honeycomb/10.png';
+import img11 from '../../../assets/honeycomb/11.png';
+import img12 from '../../../assets/honeycomb/12.png';
+import img13 from '../../../assets/honeycomb/13.png';
 
 
 const portfolio = () => {
