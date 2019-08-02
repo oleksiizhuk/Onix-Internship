@@ -30,10 +30,12 @@ export default class body extends Component {
     }
 
     render() {
+        const {person} = this.state;
+        console.log(person);
         return (
             <Fragment>
                 <Portfolio/>
-                <About date={this.state}/>
+                <About date={person}/>
                 <GetInTouch/>
             </Fragment>
         )

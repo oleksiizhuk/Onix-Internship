@@ -2,12 +2,16 @@ import React from 'react';
 import MyPhoto from '../../../images/my-photo.jpg';
 
 
-const about = (props) => {
-
-    const {
+const about = ({
+                   date: {
+                       name, surname, age, city, interests, hobby, job,
+                       social: {fb, twitter, gMail, github, linkedIn}
+                   }
+               }) => {
+    /*const {
         name, surname, age, city, interests, hobby, job,
         social: {fb , twitter, gMail, github, linkedIn}
-    } = props.date.person;
+    } = props.date;*/
 
     return (
         <div className="section-2" id="section-2">
