@@ -2,6 +2,7 @@ import React, {Fragment, Component} from 'react';
 import Portfolio from './portfolio'
 import About from './about';
 import GetInTouch from './getInTouch';
+import Table from './table';
 
 export default class body extends Component {
     constructor(props) {
@@ -24,18 +25,21 @@ export default class body extends Component {
                     github: 'https://github.com/oleksiizhuk',
                     linkedIn: 'https://www.linkedin.com/in/%D0%B0%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B9-%D0%B6%D1%83%D0%BA-317a92162/'
                 }
-            }
+            },
+            chronology:[
+
+            ]
         };
 
     }
 
     render() {
         const {person} = this.state;
-        console.log(person);
         return (
             <Fragment>
                 <Portfolio/>
                 <About date={person}/>
+                <Table/>
                 <GetInTouch/>
             </Fragment>
         )
