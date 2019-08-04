@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import TableItem from '../table-item';
 
 
 export default class table extends Component {
@@ -16,15 +17,16 @@ export default class table extends Component {
     }
 
     createElements = () => {
-        const {items = []} = this.props;
+        const {items = [], onDeleteItem} = this.props;
         const test = items.map((item, index) =>
-                (
+            (
                 <li key={index}>
                     <span>{item[0]} </span>
                     <span>{item[1]}</span>
-                    <button>X</button>
+                    <button
+                    onClick={onDeleteItem}>x</button>
                 </li>
-                )
+            )
         );
         return test;
     };
@@ -52,14 +54,19 @@ export default class table extends Component {
 
     render() {
         const elements = this.createElements();
+        const {onDeleteItem} = this.props;
         return (
             <div className='section-4' id='section-4'>
                 <div className="container">
                     <form className="table"
                           onSubmit={this.onSubmit}>
                         <ul>
-                            {elements}
-                            <li><span>1993</span> <span>родился</span>
+                            <TableItem
+                                {...elements}
+                                onDeleteItem={onDeleteItem}
+                            />
+
+                            {/*<li><span>1993</span> <span>родился</span>
                                 <button>X</button>
                             </li>
                             <li><span>2000</span> <span>поступил в школу</span>
@@ -70,7 +77,7 @@ export default class table extends Component {
                             </li>
                             <li><span>2009</span> <span>поступил в коледж</span>
                                 <button>X</button>
-                            </li>
+                            </li>*/}
                         </ul>
 
                         <input type="text"

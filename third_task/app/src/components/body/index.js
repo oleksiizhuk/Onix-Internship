@@ -50,6 +50,23 @@ export default class body extends Component {
         });
     };
 
+    deleteItem = (year, text) => {
+        this.setState(({chronology}) => {
+            const idx = chronology.findIndex((el, index) => {
+                console.log(el[0], year);
+                if (el[0] === year && el[1] === text) {
+                    return index;
+                }
+            });
+            console.log(idx);
+            const newArray = [chronology.slice(0, idx), chronology.slice(idx + 1)];
+            console.log(newArray);
+            return {
+                chronology: newArray
+            };
+        });
+    }
+
     render() {
         const {person} = this.state;
         const {chronology} = this.state;
@@ -60,6 +77,7 @@ export default class body extends Component {
                 <Table
                     onAddItem={this.addItem}
                     items={chronology}
+                    onDeleteItem={this.deleteItem}
                 />
                 <GetInTouch/>
             </Fragment>
