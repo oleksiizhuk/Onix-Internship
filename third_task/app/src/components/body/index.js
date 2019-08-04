@@ -26,20 +26,41 @@ export default class body extends Component {
                     linkedIn: 'https://www.linkedin.com/in/%D0%B0%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B9-%D0%B6%D1%83%D0%BA-317a92162/'
                 }
             },
-            chronology:[
-
-            ]
+            chronology: [
+                [['1993'], ['родился']],
+                [['2000'], ['поступил в школу']],
+                [['2008'], ['закончил школу']],
+                [['2009'], ['поступил в коледж']]]
         };
-
     }
+
+    createItem(years, text) {
+        return [
+            [years], [text]
+        ]
+    }
+
+    addItem = (years, text) => {
+        const newItem = this.createItem(years, text);
+        this.setState(({chronology}) => {
+            const newArray = [...chronology, newItem];
+            return {
+                chronology: newArray
+            }
+        });
+    };
 
     render() {
         const {person} = this.state;
+        const {chronology} = this.state;
         return (
             <Fragment>
                 <Portfolio/>
                 <About date={person}/>
-                <Table/>
+                <Table
+                    onAddItem={this.addItem}
+                    items={chronology}
+                />
                 <GetInTouch/>
             </Fragment>
         )

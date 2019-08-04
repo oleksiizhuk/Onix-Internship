@@ -3,42 +3,62 @@ import React, {Component} from "react";
 
 export default class table extends Component {
 
-    arr = [
-        [['1993'], ['родился']],
-        [['2000'], ['поступил в школу']],
-        [['2008'], ['закончил школу']],
-        [['2009'], ['поступил в коледж']]
-    ];
+    constructor(props) {
+        super(props);
+        this.state = {
+            label: '',
+            year: ''
+        }
+    }
 
     removeItem() {
 
     }
 
-    elements = this.arr.map((item, index) => {
-        return (
-            <li key={index}>
-                <span>{item[0]} </span>
-                <span>{item[1]}</span>
-                <button>X</button>
-            </li>);
-    });
-
-    addItem = () => {
-
+    createElements = () => {
+        const {items = []} = this.props;
+        const test = items.map((item, index) =>
+                (
+                <li key={index}>
+                    <span>{item[0]} </span>
+                    <span>{item[1]}</span>
+                    <button>X</button>
+                </li>
+                )
+        );
+        return test;
     };
 
-    onChange = () => {
-        console.log('.')
+    onLabelChange = (e) => {
+        this.setState({
+            label: e.target.value
+        });
+    };
+    onYearChange = (e) => {
+        this.setState({
+            year: e.target.value
+        });
+    };
+
+    onSubmit = (e) => {
+        e.preventDefault();
+        const {onAddItem} = this.props;
+        onAddItem(this.state.year, this.state.label);
+        this.setState({
+            label: '',
+            year: ''
+        });
     };
 
     render() {
-        console.log(this.elements);
+        const elements = this.createElements();
         return (
             <div className='section-4' id='section-4'>
                 <div className="container">
-                    <form className="table">
+                    <form className="table"
+                          onSubmit={this.onSubmit}>
                         <ul>
-                            {[...this.elements]};
+                            {elements}
                             <li><span>1993</span> <span>родился</span>
                                 <button>X</button>
                             </li>
@@ -52,8 +72,17 @@ export default class table extends Component {
                                 <button>X</button>
                             </li>
                         </ul>
+
                         <input type="text"
-                               onChange={this.onChange}/>
+                               onChange={this.onYearChange}
+                               value={this.state.year}
+                               placeholder='year'
+                        />
+                        <input type="text"
+                               onChange={this.onLabelChange}
+                               value={this.state.label}
+                               placeholder='event'
+                        />
                         <button>Добавить</button>
                     </form>
                 </div>
