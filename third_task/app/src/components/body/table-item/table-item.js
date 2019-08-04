@@ -7,15 +7,17 @@ export default class tableItem extends Component {
     }
 
     render() {
-        const [item] = this.props;
+        const {0: [age], 1: [text]} = this.props;
         const {onDeleteItem} = this.props;
         return (
-            <li key={1}>
-                <span>{item[0]} </span>
-                <span>{item[1]}</span>
+            <span>
+                <span>{age}</span>
+                <span>{text}</span>
                 <button
-                    onClick={onDeleteItem}>x</button>
-            </li>
+                    type='button'
+                    onClick={onDeleteItem}>x
+                </button>
+            </span>
         )
     }
 }

@@ -12,25 +12,6 @@ export default class table extends Component {
         }
     }
 
-    removeItem() {
-
-    }
-
-    createElements = () => {
-        const {items = [], onDeleteItem} = this.props;
-        const test = items.map((item, index) =>
-            (
-                <li key={index}>
-                    <span>{item[0]} </span>
-                    <span>{item[1]}</span>
-                    <button
-                    onClick={onDeleteItem}>x</button>
-                </li>
-            )
-        );
-        return test;
-    };
-
     onLabelChange = (e) => {
         this.setState({
             label: e.target.value
@@ -52,34 +33,29 @@ export default class table extends Component {
         });
     };
 
+
+
     render() {
-        const elements = this.createElements();
-        const {onDeleteItem} = this.props;
+        const {items = [], onDeleteItem} = this.props;
+        const newElements = items.map((item, index) => {
+            return (
+                <li key={index}>
+                    <TableItem
+                        {...item}
+                        onDeleteItem={() => onDeleteItem(item[0], item[1])}
+                    />
+                </li>
+            )
+        });
+
         return (
             <div className='section-4' id='section-4'>
                 <div className="container">
                     <form className="table"
                           onSubmit={this.onSubmit}>
                         <ul>
-                            <TableItem
-                                {...elements}
-                                onDeleteItem={onDeleteItem}
-                            />
-
-                            {/*<li><span>1993</span> <span>родился</span>
-                                <button>X</button>
-                            </li>
-                            <li><span>2000</span> <span>поступил в школу</span>
-                                <button>X</button>
-                            </li>
-                            <li><span>2008</span> <span>закончил школу</span>
-                                <button>X</button>
-                            </li>
-                            <li><span>2009</span> <span>поступил в коледж</span>
-                                <button>X</button>
-                            </li>*/}
+                            {newElements}
                         </ul>
-
                         <input type="text"
                                onChange={this.onYearChange}
                                value={this.state.year}
