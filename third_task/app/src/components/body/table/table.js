@@ -34,12 +34,11 @@ export default class table extends Component {
     };
 
 
-
     render() {
-        const {items = [], onDeleteItem} = this.props;
+        const {items = [], onDeleteItem, onSortTable} = this.props;
         const newElements = items.map((item, index) => {
             return (
-                <li key={index}>
+                <li key={index} className='section-4__item-li'>
                     <TableItem
                         {...item}
                         onDeleteItem={() => onDeleteItem(item[0], item[1])}
@@ -51,22 +50,34 @@ export default class table extends Component {
         return (
             <div className='section-4' id='section-4'>
                 <div className="container">
-                    <form className="table"
+                    <form className="section-4__form"
                           onSubmit={this.onSubmit}>
+                        <button
+                            className='section-4__sort-button'
+                            type='button'
+                            onClick={onSortTable}
+                        >
+                            Сортировка
+                        </button>
                         <ul>
                             {newElements}
                         </ul>
-                        <input type="text"
+                        <input type="number"
+                               min='1900'
+                               max={new Date().getFullYear()}
                                onChange={this.onYearChange}
                                value={this.state.year}
                                placeholder='year'
+                               className='section-4__input-year'
                         />
                         <input type="text"
                                onChange={this.onLabelChange}
                                value={this.state.label}
                                placeholder='event'
+                               className='section-4__input-text'
                         />
-                        <button>Добавить</button>
+                        <button
+                        className='section-4__add-button'>Добавить</button>
                     </form>
                 </div>
             </div>

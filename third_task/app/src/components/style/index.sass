@@ -252,4 +252,63 @@
     font-family: MavenProRegular, sans-serif
 
 
+.section-4__form
+  margin-top: 20px
+  margin-bottom: 20px
+
+.section-4__item-li
+  list-style-type: none
+
+.section-4__item-block
+  +display-flex
+  padding-bottom: 10px
+  margin-bottom: 10px
+  border-bottom: 1px solid black
+
+.section-4__item-age
+  padding-right: 20px
+    +flex(0 0 10%)
+
+.section-4__item-text
+  +flex(0 0 85%)
+
+.section-4__item-button-delete
+  +flex(0 0 5%)
+  background-color: #fff
+  color: red
+  border: none
+  outline: none
+
+  &:hover
+    cursor: pointer
+    color: #ff730e
+
+  &:target
+    outline: none
+
+
+.section-4__input-year
+  width: 10%
+
+.section-4__input-text
+  width: 20%
+
+.section-4__input-year, .section-4__input-text
+  font-size: 13px
+  padding: 6px 0 4px 10px
+  border: 1px solid #cecece
+  background: #F6F6f6
+  border-radius: 8px
+
+.section-4__add-button, .section-4__sort-button
+  background-color: #bebebe
+  border: none
+  color: white
+  padding: 5px 29px
+  text-align: center
+  text-decoration: none
+  display: inline-block
+  font-size: 14px
+  border-radius: 10px
+
 @import "media/media.sass"

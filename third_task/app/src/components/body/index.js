@@ -34,11 +34,11 @@ export default class body extends Component {
         };
     }
 
-    createItem(years, text) {
+    createItem = (years, text) => {
         return [
             [years], [text]
         ]
-    }
+    };
 
     addItem = (years, text) => {
         const newItem = this.createItem(years, text);
@@ -52,27 +52,27 @@ export default class body extends Component {
     };
 
     deleteItem = (year, text) => {
-        console.log(year, text);
-        console.log(this.state.chronology);
-
-        const idx = this.state.chronology.findIndex((el, index) => {
-            console.log(el[0], year);
-            if (el[0] !== year && el[1] !== text) {
-                
-            }
-            return index;
-        });
-        console.log(idx);
-        const newArray = [this.state.chronology.slice(0, idx), this.state.chronology.slice(idx + 1)];
+        const [...arr] = this.state.chronology;
+        const newArr = arr.filter((item) => item[0] !== year && item[1] !== text
+        );
         this.setState({
-            chronology: newArray
+            chronology: newArr
         });
+    };
+
+    sort = () => {
+        const [...arr] = this.state.chronology;
+        const newArr = arr.sort((a, b) => a[0] - b[0]
+        );
+        console.log(newArr);
+        this.setState({
+            chronology: newArr
+        })
     };
 
     render() {
         const {person} = this.state;
         const {chronology} = this.state;
-        console.log(this.state);
         return (
             <Fragment>
                 <Portfolio/>
@@ -81,6 +81,7 @@ export default class body extends Component {
                     onAddItem={this.addItem}
                     items={chronology}
                     onDeleteItem={this.deleteItem}
+                    onSortTable={this.sort}
                 />
                 <GetInTouch/>
             </Fragment>

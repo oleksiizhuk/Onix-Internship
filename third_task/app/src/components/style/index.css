@@ -295,6 +295,78 @@
     font-size: 12px;
     font-family: MavenProRegular, sans-serif; }
 
+.section-4__form {
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+.section-4__item-li {
+  list-style-type: none; }
+
+.section-4__item-block {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid black; }
+
+.section-4__item-age {
+  padding-right: 20px;
+    padding-right--webkit-box-flex: 0 0 10%;
+    padding-right--moz-box-flex: 0 0 10%;
+    padding-right--webkit-flex: 0 0 10%;
+    padding-right--ms-flex: 0 0 10%;
+    padding-right-flex: 0 0 10%; }
+
+.section-4__item-text {
+  -webkit-box-flex: 0 0 85%;
+  -moz-box-flex: 0 0 85%;
+  -webkit-flex: 0 0 85%;
+  -ms-flex: 0 0 85%;
+  flex: 0 0 85%; }
+
+.section-4__item-button-delete {
+  -webkit-box-flex: 0 0 5%;
+  -moz-box-flex: 0 0 5%;
+  -webkit-flex: 0 0 5%;
+  -ms-flex: 0 0 5%;
+  flex: 0 0 5%;
+  background-color: #fff;
+  color: red;
+  border: none;
+  outline: none; }
+  .section-4__item-button-delete:hover {
+    cursor: pointer;
+    color: #ff730e; }
+  .section-4__item-button-delete:target {
+    outline: none; }
+
+.section-4__input-year {
+  width: 10%; }
+
+.section-4__input-text {
+  width: 20%; }
+
+.section-4__input-year, .section-4__input-text {
+  font-size: 13px;
+  padding: 6px 0 4px 10px;
+  border: 1px solid #cecece;
+  background: #F6F6f6;
+  border-radius: 8px; }
+
+.section-4__add-button, .section-4__sort-button {
+  background-color: #bebebe;
+  border: none;
+  color: white;
+  padding: 5px 29px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 10px; }
+
 @media only screen and (max-width: 992px) {
   .portfolio__item {
     -webkit-box-flex: 0 0 33%;
