@@ -30,16 +30,95 @@ export default class body extends Component {
                 [['1993'], ['родился']],
                 [['2000'], ['поступил в школу']],
                 [['2008'], ['закончил школу']],
-                [['2009'], ['поступил в коледж']]]
+                [['2009'], ['поступил в коледж']]
+            ],
+
+            chronology1: {
+                items: {
+                    0: {age: '2993', events: 'родился'},
+                    1: {age: '2000', events: 'родился'},
+                    2: {age: '2008', events: 'закончил школу'},
+                    3: {age: '2009', events: 'поступил в коледж'}
+                }
+            },
+            lastIndex: {
+                id: 4
+            },
         };
     }
+
+
+    sortObject = () => {
+        const data = {...this.state.chronology1.items};
+        const sorted = {};
+        Object
+            .keys(data).sort((a, b) => {
+            return data[a].age - data[b].age;
+        })
+            .forEach((key, index) => {
+                sorted[index] = {...data[key]};
+            });
+        console.log("sorted - ", sorted);
+        this.setState({
+            chronology1: sorted
+        });
+    };
+
+    createItemObj = (year, text) => {
+        //////////// первый метод
+        const newId = this.state.lastIndex.id + 1;
+
+        ///////////// второй метод
+        let lastIndex = {...this.state.lastIndex};
+        lastIndex.id = ++lastIndex.id;
+
+        /////////// третий метод
+        //const lastIndex = Object.assign({}, this.state.lastIndex);
+        //lastIndex.id = ++lastIndex.id;
+
+        this.setState({
+            lastIndex: {...lastIndex}
+        }, () => console.log(this.state.lastIndex.id));
+
+        return {
+            [lastIndex.id]: {age: year, events: text}
+        }
+    };
+
+
+    addItemObject = (year = 1999, text = "test") => {
+        const newItemObject = this.createItemObj(year, text);
+        console.log("newItemObject - ", newItemObject);
+        const newObjectState = {...this.state.chronology1.items, ...newItemObject};
+        console.log("newObjectState - ", newObjectState);
+
+        this.setState({
+            chronology1: {items: {...this.state.chronology1.items, ...newItemObject}}
+        }, () => console.log(this.state.chronology1));
+    };
+
+    deleteObject = (id = []) => {
+        console.log(id);
+        const newItems = {...this.state.chronology1.items};
+        const newObject = Object.keys(newItems).reduce((object, key) => {
+            if (key !== id) {
+                object[key] = newItems[key]
+            }
+            return object
+        }, {});
+        console.log(newObject);
+        this.setState({
+            chronology1: {items:{...newObject}}
+        }, () => console.log(this.state.chronology1));
+    };
+
+    /*array**array**array**array**array**array**array**array**array*/
 
     createItem = (years, text) => {
         return [
             [years], [text]
         ]
     };
-
     addItem = (years, text) => {
         const newItem = this.createItem(years, text);
         this.setState(({chronology}) => {
@@ -82,6 +161,10 @@ export default class body extends Component {
                     items={chronology}
                     onDeleteItem={this.deleteItem}
                     onSortTable={this.sort}
+
+                    onSortObject={this.sortObject}
+                    onAddItemObject={this.addItemObject}
+                    onDeleteObject={this.deleteObject}
                 />
                 <GetInTouch/>
             </Fragment>

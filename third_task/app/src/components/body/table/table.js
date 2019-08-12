@@ -35,7 +35,7 @@ export default class table extends Component {
 
 
     render() {
-        const {items = [], onDeleteItem, onSortTable} = this.props;
+        const {items = [], onDeleteItem, onSortTable, onSortObject, onAddNewObject, onDeleteObject} = this.props;
         const newElements = items.map((item, index) => {
             return (
                 <li key={index} className='section-4__item-li'>
@@ -59,6 +59,16 @@ export default class table extends Component {
                         >
                             Сортировка
                         </button>
+                        <button
+                            type='button'
+                            onClick={onSortObject}> тест
+                        </button>
+
+                        <button
+                            type='button'
+                            onClick={() => onDeleteObject("1")}>
+                            test add
+                        </button>
                         <ul>
                             {newElements}
                         </ul>
@@ -77,7 +87,8 @@ export default class table extends Component {
                                className='section-4__input-text'
                         />
                         <button
-                        className='section-4__add-button'>Добавить</button>
+                            className='section-4__add-button'>Добавить
+                        </button>
                     </form>
                 </div>
             </div>
