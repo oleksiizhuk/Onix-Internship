@@ -29,9 +29,10 @@ export default class body extends Component {
             chronology: {
                 items: {
                     0: {age: '2993', events: 'родился'},
-                    1: {age: '2000', events: 'родился'},
+                    1: {age: '2000', events: 'поступил в школу'},
                     2: {age: '2008', events: 'закончил школу'},
-                    3: {age: '2009', events: 'поступил в коледж'}
+                    3: {age: '2009', events: 'поступил в коледж'},
+                    4: {age: '1000', events: 'тест'}
                 }
             },
             lastIndex: {
@@ -53,6 +54,33 @@ export default class body extends Component {
         this.setState({
             chronology: {items: {...sorted}}
         });
+    };
+
+    ObjectInsertionSort = () => {
+        const data = {...this.state.chronology.items};
+        console.log('data - ', data);
+        const arr = Object.keys(data).map((item) => data[item]);
+        const newArr = this.insertionSort(arr);
+        console.log("sorted new array", newArr);
+        const newObject = Object.assign({}, newArr);
+        console.log("new object sorted - ", newObject);
+    };
+
+    insertionSort = (arr) => {
+        let length = arr.length;
+        for (let i = 1; i < length; i++) {
+            let tmp = arr[i].age;
+            let tmpEvents = arr[i].events;
+            let index = i - 1;
+            while (index >= 0 && arr[index].age > tmp) {
+                arr[index + 1].age = arr[index].age;
+                arr[index + 1].events = arr[index].events;
+                index--;
+            }
+            arr[index + 1].age = tmp;
+            arr[index + 1].events = tmpEvents;
+        }
+        return arr;
     };
 
     // какой метод лучше ипользовать ???????
@@ -100,10 +128,10 @@ export default class body extends Component {
     };
 
     render() {
+        //console.log("test - ", this.ObjectInsertionSort());
         const {person} = this.state;
         //const {items} = {...this.state.chronology};
         const {chronology: {items: items}} = {...this.state};
-        console.log(items);
         return (
             <Fragment>
                 <Portfolio/>
