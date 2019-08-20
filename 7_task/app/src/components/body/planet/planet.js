@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 
+import Spiner from '../loading';
+
 import './planet.css';
 
 import SwapiService from '../../../services/swapi-service';
@@ -9,12 +11,14 @@ export default class planet extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            info: {id: 2,
-            ell1: null,
-            ell2: null,
-            ell3: null},
-            change: 'planets',
-            filter: 'planets'
+            info: {
+                id: 2,
+                ell1: null,
+                ell2: null,
+                ell3: null
+            },
+            filter: 'planets',
+            loading: true,
         }
     }
 
@@ -26,7 +30,7 @@ export default class planet extends Component {
     swapiService = new SwapiService();
 
     generationRandomId() {
-        const id = Math.floor(Math.random() * 10 + 1);
+        const id = Math.floor(Math.random() * 10 + 2);
         return id;
     }
 
@@ -38,7 +42,8 @@ export default class planet extends Component {
         this.swapiService.getPerson(this.generationRandomId())
             .then((info) => {
                 this.setState({
-                    info
+                    info: info,
+                    loading: false
                 });
             });
     }
@@ -47,12 +52,20 @@ export default class planet extends Component {
         this.swapiService.getPlanet(this.generationRandomId())
             .then((info) => {
                 this.setState({
-                    info: info
+                    info: info,
+                    loading: false
                 });
             });
     };
 
+    onLoadingFalse() {
+        this.setState(
+            {loading: true}
+        )
+    }
+
     filter(filter) {
+        this.onLoadingFalse();
         switch (filter) {
             case 'planets':
                 return this.getPlanet();
@@ -76,10 +89,20 @@ export default class planet extends Component {
 
     render() {
 
-        const {info} = this.state;
-        const {filter} = this.state;
-        console.log(info);
-        console.log(info);
+        const {info, filter, loading} = this.state;
+
+        if (loading) {
+
+            return (
+                <div className='section-5'>
+                    <div className="container">
+                        <div className="random-planet jumbotron rounded">
+                            <Spiner/>
+                        </div>
+                    </div>
+                </div>)
+        }
+
         const buttons = this.buttons.map(({name, label}) => {
             const isActive = filter === name;
             const clazz = isActive ? 'active-button' : 'btn-outline-secondary';
@@ -100,8 +123,11 @@ export default class planet extends Component {
                         {buttons}
                     </div>
                     <div className="random-planet jumbotron rounded">
-                        <img className="planet-image" alt={this.state.id}
-                             src={`https://starwars-visualguide.com/assets/img/${this.state.filter}/${info.id}.jpg`}/>
+
+                        {loading ? <Spiner/> :
+                            <img className="planet-image" alt={this.state.id}
+                                 src={`https://starwars-visualguide.com/assets/img/${this.state.filter}/${info.id}.jpg`}/>
+                        }
                         <div>
                             <h4>{info.name}</h4>
                             <ul className="list-group list-group-flush">
