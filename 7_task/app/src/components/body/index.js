@@ -3,8 +3,12 @@ import Portfolio from './portfolio'
 import About from './about';
 import GetInTouch from './getInTouch';
 import Table from './table';
+import Planet from './planet'
+import SwapiService from '../../services/swapi-service';
 
 export default class body extends Component {
+    swapiService = new SwapiService();
+
     constructor(props) {
         super(props);
 
@@ -38,6 +42,8 @@ export default class body extends Component {
             lastIndex: {
                 id: 4
             },
+            filter: 'Planet',
+            info: null
         };
     }
 
@@ -83,27 +89,16 @@ export default class body extends Component {
         return arr;
     };
 
-    // какой метод лучше ипользовать ???????
     createItemObj = (year, text) => {
-        //////////// первый метод
-        // const newId = this.state.lastIndex.id + 1;
-
-        ///////////// второй метод
         let lastIndex = {...this.state.lastIndex};
         lastIndex.id = ++lastIndex.id;
-
-        /////////// третий метод
-        //const lastIndex = Object.assign({}, this.state.lastIndex);
-        //lastIndex.id = ++lastIndex.id;
-
         this.setState({
             lastIndex: lastIndex
-        },);
+        });
         return {
             [lastIndex.id]: {age: year, events: text}
         }
     };
-
 
     addItemObject = (year = 9999, text = "error") => {
         const newItem = this.createItemObj(year, text);
@@ -128,10 +123,8 @@ export default class body extends Component {
     };
 
     render() {
-        console.log("test - ", this.ObjectInsertionSort());
         const {person} = this.state;
-        //const {items} = {...this.state.chronology};
-        const {chronology: {items: items}} = {...this.state};
+        const {chronology: {items}} = {...this.state};
         return (
             <Fragment>
                 <Portfolio/>
@@ -142,6 +135,7 @@ export default class body extends Component {
                     onDeleteItem={this.deleteItem}
                     onSortTable={this.sortObject}
                 />
+                <Planet/>
                 <GetInTouch/>
             </Fragment>
         )
