@@ -1,6 +1,6 @@
 export default class SwapiServise {
 
-    _apiBase = 'https://swapi.co/api';
+    _apiBase = process.env.REACT_APP_API_BASE;
 
     getResource = async (url) => {
         const res = await fetch(`${this._apiBase}${url}`);
@@ -13,7 +13,6 @@ export default class SwapiServise {
 
     async getPerson(id) {
         const person = await this.getResource(`/people/${id}/`);
-        console.log(person)
         return this._transformPerson(person);
     }
 
