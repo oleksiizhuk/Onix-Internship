@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 
 import SwapiService from '../../../services/swapi-service';
-import HeroItems from '../hero-items'
+import HeroItems from '../hero-items';
+import ErrorApi from '../error-api';
 import './hero.css';
 
 
@@ -12,7 +13,8 @@ export default class hero extends Component {
 
         this.state = {
             heroes: [],
-            ready: false,
+            error: false,
+            loading: false,
             activeElement: null
         }
     }
@@ -21,13 +23,14 @@ export default class hero extends Component {
 
     componentDidMount() {
         this.swapi.getAllPeople().then((heroes) => {
-            console.log(heroes);
             this.setState({
                 heroes,
-                ready: true
+                loading: true
             });
         }).catch((err) => {
             console.log(err);
+            const {error} = this.state;
+            this.setState({error: !error});
         });
     }
 
@@ -61,12 +64,11 @@ export default class hero extends Component {
             }
             return;
         }
-        if (!e.altKey) {
-            return;
+        if (e.altKey) {
+            this.setState({
+                activeElement: index
+            });
         }
-        this.setState({
-            activeElement: index
-        });
     };
 
     heroItem = () => {
@@ -97,14 +99,15 @@ export default class hero extends Component {
 
 
     render() {
-        const {ready} = this.state;
-        const items = ready ? this.heroItem() : null;
+        const {loading, error} = this.state;
+        const err = error ? <ErrorApi/> : null;
+        const items = (loading || !error) ? this.heroItem() : null;
         return (
             <div className='section-6'>
                 <div className='container'>
-                    <h3 className='section-6__title'>List of heroes</h3>
                     <ul className='draggable__ul'>
                         {items}
+                        {err}
                     </ul>
                 </div>
             </div>
