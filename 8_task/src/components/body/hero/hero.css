@@ -15,9 +15,6 @@
   padding: 0;
   padding-bottom: 30px; }
 
-.drag__active {
-  box-shadow: 0 0 0 10px #5f5d5a; }
-
 .draggable__item__li {
   background-color: #afb3b5;
   padding: 10px 20px;
@@ -26,5 +23,8 @@
   align-items: flex-start;
   line-height: 1;
   border: 1px solid; }
+
+.drag__active {
+  border: 3px solid; }
 
 /*# sourceMappingURL=hero.css.map */

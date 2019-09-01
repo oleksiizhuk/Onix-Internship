@@ -13,7 +13,7 @@ export default class hero extends Component {
         this.state = {
             heroes: [],
             ready: false,
-            activeElement: ''
+            activeElement: null
         }
     }
 
@@ -35,7 +35,6 @@ export default class hero extends Component {
         this.draggedItem = this.state.heroes[index];
         e.dataTransfer.effectAllowed = "move";
         e.dataTransfer.setData("text/html", e.target.parentNode);
-        //e.dataTransfer.setDragImage(e.target.parentNode, 20, 20);
     };
 
     onDragOver = index => {
@@ -45,7 +44,7 @@ export default class hero extends Component {
         }
         let heroes = this.state.heroes.filter(item => item !== this.draggedItem);
         heroes.splice(index, 0, this.draggedItem);
-        this.setState({heroes});
+        this.setState({heroes, activeElement: index});
     };
 
     onDragEnd = () => {
@@ -53,17 +52,21 @@ export default class hero extends Component {
     };
 
     handleClick = (e, index) => {
+        if (e.ctrlKey) {
+            const {activeElement} = this.state;
+            if (activeElement === index) {
+                this.setState({
+                    activeElement: null
+                })
+            }
+            return;
+        }
         if (!e.altKey) {
             return;
         }
         this.setState({
             activeElement: index
         });
-        console.log(this);
-        console.log(this.li);
-        console.log(e.target);
-        console.log(index);
-        const div = e.target;
     };
 
     heroItem = () => {
@@ -72,12 +75,12 @@ export default class hero extends Component {
         const items = heroes.map((item, index) => {
             return (
                 <li
-                    className='draggable__item__li'
+                    className={'draggable__item__li ' + (activeElement === index ? 'drag__active' : '')}
                     key={index}
                     onDragOver={() => this.onDragOver(index)}
                     onClick={(e) => this.handleClick(e, index)}>
                     <div
-                        className={"drag " + (activeElement === index ? 'drag__active' : '')}
+                        className="drag"
                         draggable
                         onDragStart={(e) => this.onDragStart(e, index)}
                         onDragEnd={this.onDragEnd}
@@ -107,6 +110,4 @@ export default class hero extends Component {
             </div>
         )
     }
-
-
 }
