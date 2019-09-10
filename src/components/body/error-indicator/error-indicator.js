@@ -1,9 +1,8 @@
 import React from 'react';
 
-import './error-api.css'
+import './error-indicator.css'
 
 const errorApi = () => {
-
     return (
         <div className='error-indicator'>
             <span className='boom'>BOOM!</span>

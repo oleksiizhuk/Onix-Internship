@@ -1,7 +1,5 @@
 import React, {Component} from "react";
-
-import Spiner from '../loading';
-
+import Spiner from '../spiner';
 import './planet.css';
 
 import SwapiService from '../../../services/swapi-service';
@@ -29,9 +27,8 @@ export default class planet extends Component {
 
     swapiService = new SwapiService();
 
-    generationRandomId() {
-        const id = Math.floor(Math.random() * 10 + 2);
-        return id;
+    static generationRandomId() {
+        return Math.floor(Math.random() * 10 + 2);
     }
 
     onFilterChange = (filter) => {
@@ -39,7 +36,7 @@ export default class planet extends Component {
     };
 
     getPerson() {
-        this.swapiService.getPerson(this.generationRandomId())
+        this.swapiService.getPerson(planet.generationRandomId())
             .then((info) => {
                 this.setState({
                     info: info,
@@ -49,7 +46,7 @@ export default class planet extends Component {
     }
 
     getPlanet = () => {
-        this.swapiService.getPlanet(this.generationRandomId())
+        this.swapiService.getPlanet(planet.generationRandomId())
             .then((info) => {
                 this.setState({
                     info: info,

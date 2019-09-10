@@ -1,15 +1,22 @@
 import React, {Component} from "react";
+import PropsType from 'prop-types';
 import TableItem from '../table-item';
 
-
 export default class table extends Component {
+
+    static propTypes = {
+        items: PropsType.object,
+        onAddItem: PropsType.func,
+        onDeleteItem: PropsType.func,
+        onSortTable: PropsType.func
+    };
 
     constructor(props) {
         super(props);
         this.state = {
             label: '',
             year: ''
-        }
+        };
     }
 
     onLabelChange = (e) => {
@@ -43,13 +50,14 @@ export default class table extends Component {
             </li>
         )
     };
+
     render() {
         const {onDeleteItem, onSortTable} = this.props;
         const items = this.props.items;
         const newElements = [];
-        for (let index in  items) {
-            if(items.hasOwnProperty(index)) { // ESLint - просит что бы я поставли такую проверку, не могу понять зачем ???
-            newElements[index] = this.createTable(items[index].age, items[index].events, index, onDeleteItem);
+        for (let index in items) {
+            if (items.hasOwnProperty(index)) { // ESLint - просит что бы я поставли такую проверку, не могу понять зачем ???
+                newElements[index] = this.createTable(items[index].age, items[index].events, index, onDeleteItem);
             }
         }
 

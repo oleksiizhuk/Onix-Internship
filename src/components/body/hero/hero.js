@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import SwapiService from '../../../services/swapi-service';
 import HeroItems from '../hero-items';
-import ErrorApi from '../error-api';
+import ErrorIndicator from '../error-indicator';
 import './hero.css';
 
 
@@ -27,8 +27,7 @@ export default class hero extends Component {
                 heroes,
                 loading: true
             });
-        }).catch((err) => {
-            console.log(err);
+        }).catch(() => {
             const {error} = this.state;
             this.setState({error: !error});
         });
@@ -48,10 +47,6 @@ export default class hero extends Component {
         let heroes = this.state.heroes.filter(item => item !== this.draggedItem);
         heroes.splice(index, 0, this.draggedItem);
         this.setState({heroes, activeElement: index});
-    };
-
-    onDragEnd = () => {
-        this.draggedIdx = null;
     };
 
     handleClick = (e, index) => {
@@ -85,7 +80,6 @@ export default class hero extends Component {
                         className="drag"
                         draggable
                         onDragStart={(e) => this.onDragStart(e, index)}
-                        onDragEnd={this.onDragEnd}
                     >
                         <HeroItems
                             info={item}
@@ -94,13 +88,13 @@ export default class hero extends Component {
                 </li>
             )
         });
-        return items;
+        return (items);
     };
 
 
     render() {
         const {loading, error} = this.state;
-        const err = error ? <ErrorApi/> : null;
+        const err = error ? <ErrorIndicator/> : null;
         const items = (loading || !error) ? this.heroItem() : null;
         return (
             <div className='section-6'>

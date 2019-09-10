@@ -1,11 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class tableItem extends Component {
-
-    render() {
-       const {age, text, onDeleteItem} = this.props;
-        return (
-            <span className='section-4__item-block'>
+const tableItem = ({age, text, onDeleteItem}) => {
+    return (
+        <span className='section-4__item-block'>
                 <span className='section-4__item-age'>{age}</span>
                 <span className='section-4__item-text'>{text}</span>
                 <button
@@ -14,6 +12,14 @@ export default class tableItem extends Component {
                     onClick={onDeleteItem}><i className="fa fa-trash-o"/>
                 </button>
             </span>
-        )
-    }
-}
+    )
+};
+
+tableItem.propTypes = {
+    age: PropTypes.string,
+    text: PropTypes.string,
+    onDeleteItem: PropTypes.func
+};
+export default tableItem;
+
+

@@ -5,6 +5,8 @@ import GetInTouch from './getInTouch';
 import Table from './table';
 import Planet from './planet'
 import Hero from './hero';
+import ErrorIndicator from './error-indicator';
+import ErrorButton from "./error-button";
 
 export default class body extends Component {
 
@@ -42,8 +44,13 @@ export default class body extends Component {
                 id: 4
             },
             filter: 'Planet',
-            info: null
+            info: null,
+            hasError: false
         };
+    }
+
+    componentDidCatch(error, errorInfo) {
+        this.setState({hasError: true})
     }
 
     sortObject = () => {
@@ -61,7 +68,7 @@ export default class body extends Component {
         });
     };
 
-    ObjectInsertionSort = () => {
+    /*ObjectInsertionSort = () => {
         const data = {...this.state.chronology.items};
         console.log('data - ', data);
         const arr1 = Object.keys(data).map((el) => data[el]);
@@ -86,7 +93,7 @@ export default class body extends Component {
             arr[index + 1].events = tmpEvents;
         }
         return arr;
-    };
+    };*/
 
     createItemObj = (year, text) => {
         let lastIndex = {...this.state.lastIndex};
@@ -122,8 +129,13 @@ export default class body extends Component {
     };
 
     render() {
-        const {person} = this.state;
+        const {person, hasError} = this.state;
         const {chronology: {items}} = {...this.state};
+
+        if (hasError) {
+            return <ErrorIndicator/>
+        }
+
         return (
             <Fragment>
                 <Portfolio/>
@@ -137,6 +149,7 @@ export default class body extends Component {
                 <Planet/>
                 <Hero/>
                 <GetInTouch/>
+                <ErrorButton/>
             </Fragment>
         )
     }
