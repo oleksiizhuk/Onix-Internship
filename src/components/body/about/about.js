@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MyPhoto from '../../../assets/my-photo.jpg';
+import MyPhoto from '../../../assets/images/my-photo.jpg';
 
 
 const about = ({
