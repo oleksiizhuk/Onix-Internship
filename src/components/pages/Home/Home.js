@@ -151,7 +151,7 @@ export default class Home extends Component {
     render() {
         const {person, hasError} = this.state;
         const tableItems = this.createTable();
-
+        console.log(tableItems);
         if (hasError) {
             return <ErrorIndicator/>
         }
@@ -166,7 +166,6 @@ export default class Home extends Component {
                 onTableLabelChange={this.onLabelChange}
                 onTableYearChange={this.onYearChange}
                 onTableSubmit={this.onSubmit}
-                onTableCreateTable={this.createTable(age, text, index, func)}
             />
         )
     }

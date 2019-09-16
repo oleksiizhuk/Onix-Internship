@@ -42,7 +42,7 @@ export default class table extends Component {
 
 
     render() {
-        const {onDeleteItem, onSortTable} = this.props;
+        const {onSortTable,talbeItems} = this.props;
 
         return (
             <div className='section-4' id='section-4'>
@@ -58,7 +58,7 @@ export default class table extends Component {
                         </button>
 
                         <ul>
-                            {newElements}
+                            {talbeItems}
                         </ul>
                         <input type="number"
                                min='1900'

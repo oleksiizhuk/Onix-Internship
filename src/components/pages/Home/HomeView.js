@@ -12,7 +12,7 @@ import ErrorButton from "./components/error-button";
 
 const homeView = (props) => {
 
-    const {date, items} = props;
+    const {date, talbeItems} = props;
     console.log(props);
 
     return (
@@ -24,7 +24,7 @@ const homeView = (props) => {
 
                 <Table
                     onAddItem={props.addItemObject}
-                    items={items}
+                    talbeItems={talbeItems}
                     onDeleteItem={props.deleteItem}
                     onSortTable={props.sortObject}
                 />
