@@ -1,24 +1,24 @@
 @import url(normalize/normalize.css);
 @font-face {
   font-family: "Lato-Black";
-  src: url("../../assets/fonts/Lato-Black/Lato-Black.eot");
-  src: url("../../assets/fonts/Lato-Black/Lato-Black.ttf");
-  src: url("../../assets/fonts/Lato-Black/Lato-Black.woff"); }
+  src: url("../assets/fonts/Lato-Black/Lato-Black.eot");
+  src: url("../assets/fonts/Lato-Black/Lato-Black.ttf");
+  src: url("../assets/fonts/Lato-Black/Lato-Black.woff"); }
 @font-face {
   font-family: "Lato-Bold";
-  src: url("../../assets/fonts/Lato-Bold/Lato-Bold.eot");
-  src: url("../../assets/fonts/Lato-Bold/Lato-Bold.ttf");
-  src: url("../../assets/fonts/Lato-Bold/Lato-Bold.woff"); }
+  src: url("../assets/fonts/Lato-Bold/Lato-Bold.eot");
+  src: url("../assets/fonts/Lato-Bold/Lato-Bold.ttf");
+  src: url("../assets/fonts/Lato-Bold/Lato-Bold.woff"); }
 @font-face {
   font-family: "Lato-Regular";
-  src: url("../../assets/fonts/Lato-Regular/Lato-Regular.eot");
-  src: url("../../assets/fonts/Lato-Regular/Lato-Regular.ttf");
-  src: url("../../assets/fonts/Lato-Regular/Lato-Regular.woff"); }
+  src: url("../assets/fonts/Lato-Regular/Lato-Regular.eot");
+  src: url("../assets/fonts/Lato-Regular/Lato-Regular.ttf");
+  src: url("../assets/fonts/Lato-Regular/Lato-Regular.woff"); }
 @font-face {
   font-family: "MavenProRegular";
-  src: url("../../assets/fonts/MavenProRegular/MavenProRegular.eot");
-  src: url("../../assets/fonts/MavenProRegular/MavenProRegular.ttf");
-  src: url("../../assets/fonts/MavenProRegular/MavenProRegular.woff"); }
+  src: url("../assets/fonts/MavenProRegular/MavenProRegular.eot");
+  src: url("../assets/fonts/MavenProRegular/MavenProRegular.ttf");
+  src: url("../assets/fonts/MavenProRegular/MavenProRegular.woff"); }
 .container-portfolio {
   max-width: 980px;
   position: relative;

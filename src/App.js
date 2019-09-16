@@ -1,20 +1,14 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Page from './components/layout/Page/Page';
-import './components/style/index.css';
+import Home from './components/pages/Home/Home';
+import './scss/index.css';
 
 class App extends Component {
 
     render() {
         return (
             <Page>
-                <div>
-                    <ul>
-                        <li>1</li>
-                        <li>2</li>
-                        <li>3</li>
-                        <li>4</li>
-                    </ul>
-                </div>
+                <Home/>
             </Page>
         );
     }
