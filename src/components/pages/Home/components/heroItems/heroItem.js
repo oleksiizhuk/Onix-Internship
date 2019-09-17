@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
-import './hero-item.css';
+import '../../../../../scss/pages/home/component/heroItem.scss';
 
 const heroItem = ({info: {id, name, gender, birth, eye}}) => {
 

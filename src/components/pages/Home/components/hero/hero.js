@@ -1,7 +1,7 @@
 import React from 'react';
 import ErrorIndicator from '../errorIndicator/errorIndicator';
 import Spinner from '../spinner/spinner';
-import './hero.css';
+import '../../../../../scss/pages/home/component/hero.scss';
 
 const hero = (props) => {
     const {heroItems, heroError, loadingHero} = props;

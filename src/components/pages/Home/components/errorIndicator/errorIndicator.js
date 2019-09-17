@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './error-indicator.css'
+import '../../../../../scss/pages/home/component/errorIndicator.scss'
 
 const errorApi = () => {
     return (

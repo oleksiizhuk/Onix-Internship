@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import ErrorIndicator from './components/errorIndicator/errorIndicator';
 import SWApiService from '../../../services/swapi-service';
 import HomeView from './HomeView';
+import ErrorIndicator from './components/errorIndicator/errorIndicator';
 import TableItem from "./components/tableItem/tableItem";
 import HeroItems from "./components/heroItems/heroItem";
 

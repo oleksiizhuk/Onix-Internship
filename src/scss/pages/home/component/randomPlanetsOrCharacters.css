@@ -10,8 +10,9 @@
   background-color: #303030;
   padding: 10px;
   border: 1px solid black; }
-  .btn:hover {
-    background-color: #5f5d5a; }
+
+.btn:hover {
+  background-color: #5f5d5a; }
 
 .active-button {
   color: #5f5d5a; }

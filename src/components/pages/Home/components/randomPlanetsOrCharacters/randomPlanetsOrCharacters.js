@@ -1,6 +1,6 @@
 import React from "react";
 import Spinner from '../spinner/spinner';
-import './planet.css';
+import '../../../../../scss/pages/home/component/randomPlanetsOrCharacters.scss';
 
 const randomPlanetsOrCharacters = ({planetButtons, planetLoading, planetInfo, planetFilter}) => {
 

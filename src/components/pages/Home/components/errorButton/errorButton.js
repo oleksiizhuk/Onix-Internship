@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import './error-button.css';
+import '../../../../../scss/pages/home/component/errorButton.scss';
 
 export default class ErrorButton extends Component {
 

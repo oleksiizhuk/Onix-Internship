@@ -3,7 +3,7 @@ import {Switch, Router, Route} from 'react-router-dom';
 import {createBrowserHistory} from 'history';
 import Page from './components/layout/Page/Page';
 import Home from './components/pages/Home/Home';
-import './scss/index.css';
+import './scss/index.scss';
 
 class App extends Component {
 
