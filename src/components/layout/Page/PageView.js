@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 
 const pageView = (props) => {
     return (
-        <div className="container">
+        <Fragment>
             {props}
-        </div>
+        </Fragment>
     )
 };
 

@@ -16,7 +16,7 @@ import img13 from '../../../../../assets/images/honeycomb/13.png';
 
 
 const portfolio = () => {
-    return(
+    return (
         <div className="section-1" id="section-1">
             <div className="container-portfolio">
                 <div className="portfolio">

@@ -1,12 +1,11 @@
 import React from "react";
 import PropsType from 'prop-types';
-import Button from '../../../../Elements/Button/Button';
-import Input from '../../../../Elements/input/input'
+import Button from '../../../../elements/Button/Button';
+import Input from '../../../../elements/Input/Input'
 
 
-const table = (props) => {
+const table = ({onSortTable, tableItems, onTableLabelChange, onTableYearChange, onTableSubmit, tableLabel, tableYear}) => {
 
-    const {onSortTable, tableItems, onTableLabelChange, onTableYearChange, onTableSubmit, tableLabel, tableYear} = props;
     return (
         <div className='section-4' id='section-4'>
             <div className="container">
@@ -28,7 +27,6 @@ const table = (props) => {
                         value={tableYear}
                         onChange={onTableYearChange}
                         className={'section-4__input-year'}
-
                     />
                     <Input
                         type={'text'}
@@ -36,7 +34,6 @@ const table = (props) => {
                         value={tableLabel}
                         onChange={onTableLabelChange}
                         className={'section-4__input-text'}
-
                     />
                     <Button
                         text={'Добавить'}

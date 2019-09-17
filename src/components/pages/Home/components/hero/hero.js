@@ -1,6 +1,6 @@
 import React from 'react';
-import ErrorIndicator from '../error-indicator';
-import Spinner from '../spiner';
+import ErrorIndicator from '../errorIndicator/errorIndicator';
+import Spinner from '../spinner/spinner';
 import './hero.css';
 
 const hero = (props) => {

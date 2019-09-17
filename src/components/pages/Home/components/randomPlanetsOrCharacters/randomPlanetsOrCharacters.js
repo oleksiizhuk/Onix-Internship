@@ -1,10 +1,8 @@
 import React from "react";
-import Spinner from '../spiner';
+import Spinner from '../spinner/spinner';
 import './planet.css';
 
-const planet = (props) => {
-
-    const {planetButtons, planetLoading, planetInfo, planetFilter} = props;
+const randomPlanetsOrCharacters = ({planetButtons, planetLoading, planetInfo, planetFilter}) => {
 
     if (planetLoading) {
         return (
@@ -52,4 +50,4 @@ const planet = (props) => {
     )
 };
 
-export default planet;
+export default randomPlanetsOrCharacters;

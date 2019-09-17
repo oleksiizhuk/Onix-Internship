@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import MyPhoto from '../../../../../assets/images/my-photo.jpg';
 
 
-const about = ({
-                   date: {
-                       name, surname, age, city, interests, hobby, job,
-                       social: {fb, twitter, gMail, github, linkedIn}
-                   }
-               }) => {
+const about = (
+    {
+        date: {
+            name, surname, age, city, interests, hobby, job,
+            social: {fb, twitter, gMail, github, linkedIn}
+        }
+    }
+) => {
     return (
         <div className="section-2" id="section-2">
             <div className="container">

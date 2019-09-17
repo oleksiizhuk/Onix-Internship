@@ -1,11 +1,11 @@
 import React, {Fragment} from 'react';
-import Portfolio from './components/portfolio'
-import About from './components/about';
-import GetInTouch from './components/getInTouch';
-import Table from './components/table';
-import Planet from './components/planet'
-import Hero from './components/hero';
-import ErrorButton from "./components/error-button";
+import Portfolio from './components/portfolio/portfolio'
+import About from './components/about/about';
+import GetInTouch from './components/getInTouch/getInTouch';
+import Table from './components/table/table';
+import RandomPlanetsOrCharacters from './components/randomPlanetsOrCharacters/randomPlanetsOrCharacters';
+import Hero from './components/hero/hero';
+import ErrorButton from "./components/errorButton/errorButton";
 
 const homeView = (props) => {
 
@@ -26,7 +26,7 @@ const homeView = (props) => {
                 onTableYearChange={onTableYearChange}
                 onTableSubmit={onTableSubmit}
             />
-            <Planet
+            <RandomPlanetsOrCharacters
                 planetButtons={planetButtons}
                 planetLoading={planetLoading}
                 planetInfo={planetInfo}

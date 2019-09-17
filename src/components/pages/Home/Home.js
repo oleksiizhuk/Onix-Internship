@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import ErrorIndicator from './components/error-indicator';
-import SwapiService from '../../../services/swapi-service';
+import ErrorIndicator from './components/errorIndicator/errorIndicator';
+import SWApiService from '../../../services/swapi-service';
 import HomeView from './HomeView';
-import TableItem from "./components/table-item";
-import HeroItems from "./components/hero-items";
+import TableItem from "./components/tableItem/tableItem";
+import HeroItems from "./components/heroItems/heroItem";
 
 export default class Home extends Component {
-    swapiService = new SwapiService();
+    swapiService = new SWApiService();
 
     constructor(props) {
         super(props);
@@ -56,39 +56,36 @@ export default class Home extends Component {
             heroes: [],
             error: false,
             loadingHero: false,
-            activeElement: null
+            activeElement: null,
+            planetButtons: [
+                {name: 'planets', label: "planets"},
+                {name: 'characters', label: "characters"}
+            ]
         };
     }
-
-    planetButtons = [
-        {name: 'planets', label: "planets"},
-        {name: 'characters', label: "characters"}
-    ];
 
     componentDidCatch(error, errorInfo) {
         this.setState({hasError: true})
     }
 
-    createItemObj = (year, text) => {
-        let lastIndex = {...this.state.lastIndex};
-        lastIndex.id = ++lastIndex.id;
-        this.setState({
-            lastIndex: lastIndex
-        });
+// table
+    createTableObject = (year, text, index) => {
         return {
-            [lastIndex.id]: {age: year, events: text}
+            [index]: {age: year, events: text}
         }
     };
 
-    addItemObject = (year = 9999, text = "error") => {
-        const newItem = this.createItemObj(year, text);
-        const newObject = {...this.state.chronology.items, ...newItem};
+    addItemObject = () => {
+        const {tableYear, tableLabel, lastIndex: {id: lastIndex}, chronology: {items}} = this.state;
+        const newIndex = lastIndex + 1;
+        const newItem = this.createTableObject(tableYear, tableLabel, newIndex);
         this.setState({
-            chronology: {items: {...this.state.chronology.items, ...newObject}}
-        }, () => console.log(this.state.chronology));
+            chronology: {items: {...items, ...newItem}},
+            lastIndex: {id: newIndex}
+        });
     };
 
-    deleteItem = (id) => {
+    deleteTableItem = (id) => {
         const newItems = {...this.state.chronology.items};
         const newObject = Object.keys(newItems).reduce((item, index) => {
             if (index !== id) {
@@ -101,7 +98,6 @@ export default class Home extends Component {
         });
     };
 
-    // table
     tableSortObject = () => {
         const data = {...this.state.chronology.items};
         const sorted = {};
@@ -143,11 +139,12 @@ export default class Home extends Component {
         const newElements = [];
         for (let index in items) {
             if (items.hasOwnProperty(index)) {
-                newElements[index] = this.createTableItem(items[index].age, items[index].events, index, this.deleteItem);
+                newElements[index] = this.createTableItem(items[index].age, items[index].events, index, this.deleteTableItem);
             }
         }
         return newElements;
     };
+
     createTableItem = (age, text, index, func) => {
         return (
             <li key={index} className='section-4__item-li'>
@@ -163,8 +160,8 @@ export default class Home extends Component {
 
 //Planet ***
     createButtons = () => {
-        const {filterPlanet} = this.state;
-        return this.planetButtons.map(({name, label}) => {
+        const {filterPlanet, planetButtons} = this.state;
+        return planetButtons.map(({name, label}) => {
             const isActive = filterPlanet === name;
             const clazz = isActive ? 'active-button' : 'btn-outline-secondary';
             return (
@@ -182,10 +179,10 @@ export default class Home extends Component {
         this.setState({filterPlanet});
     };
 
-    static generationRandomId = () => Math.floor(Math.random() * 10 + 2);
+    generationRandomId = () => Math.floor(Math.random() * 10 + 2);
 
     getItem = (query) => {
-        query(Home.generationRandomId())
+        query(this.generationRandomId())
             .then((infoPlanet) => {
                 this.setState({
                     infoPlanet: infoPlanet,
@@ -232,6 +229,7 @@ export default class Home extends Component {
             this.filter(nextState.filterPlanet)
         }
     }
+
 //Planet ***
 
 // hero ***
@@ -277,7 +275,7 @@ export default class Home extends Component {
     };
 
     handleClick = (e, index) => {
-        if (e.ctrlKey) {
+        if (e.ctrlKey || e.metaKey) {
             const {activeElement} = this.state;
             if (activeElement === index) {
                 this.setState({
@@ -295,12 +293,20 @@ export default class Home extends Component {
 
     //hero ***
     render() {
-        const {person, hasError, tableLabel, tableYear} = this.state;
-        const {loading, infoPlanet, filterPlanet} = this.state;
+        const {
+            person,
+            hasError,
+            tableLabel,
+            tableYear,
+            loading,
+            infoPlanet,
+            filterPlanet,
+            loadingHero,
+            error
+        } = this.state;
         const tableItems = this.createTable();
         const buttons = this.createButtons();
 
-        const {loadingHero, error} = this.state;
         const itemsHero = (loadingHero || !error) ? this.heroItem() : null;
         if (hasError) {
             return <ErrorIndicator/>
@@ -313,7 +319,7 @@ export default class Home extends Component {
                 tableLabel={tableLabel}
                 tableYear={tableYear}
                 onAddItem={this.addItemObject}
-                onDeleteItem={this.deleteItem}
+                onDeleteItem={this.deleteTableItem}
                 onSortTable={this.tableSortObject}
                 onTableLabelChange={this.onLabelChange}
                 onTableYearChange={this.onYearChange}

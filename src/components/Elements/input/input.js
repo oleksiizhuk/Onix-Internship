@@ -1,15 +1,10 @@
 import React from 'react';
 
-const input = (props) => {
-
-    const {type, value, className, placeholder, min, max, onChange} = props;
-    const state = {
-        text: value
-    };
+const input = ({type, value, className, placeholder, min, max, onChange}) => {
     return (
         <input
             type={type}
-            value={state.text}
+            value={value}
             placeholder={placeholder}
             className={className}
             min={min}

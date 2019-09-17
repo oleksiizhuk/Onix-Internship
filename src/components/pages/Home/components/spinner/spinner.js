@@ -1,5 +1,5 @@
 import React from 'react';
-import './spiner.css';
+import '../../../../../scss/pages/home/component/spinner/spinner.css';
 
 const loading = () => {
     return (
