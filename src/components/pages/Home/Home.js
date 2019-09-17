@@ -3,9 +3,10 @@ import ErrorIndicator from './components/error-indicator';
 import SwapiService from '../../../services/swapi-service';
 import HomeView from './HomeView';
 import TableItem from "./components/table-item";
+import HeroItems from "./components/hero-items";
 
 export default class Home extends Component {
-    swapi = new SwapiService();
+    swapiService = new SwapiService();
 
     constructor(props) {
         super(props);
@@ -32,40 +33,41 @@ export default class Home extends Component {
                 items: {
                     0: {age: '2993', events: 'родился'},
                     1: {age: '2000', events: 'поступил в школу'},
-                    2: {age: '2008', events: 'закончил школу'},
-                    3: {age: '2009', events: 'поступил в коледж'},
-                    4: {age: '1000', events: 'тест'}
+                    2: {age: '1000', events: 'тест'}
                 }
             },
             lastIndex: {
-                id: 4
+                id: 2
             },
-            filter: 'Planet',
             info: null,
             hasError: false,
             tableLabel: '',
-            yearLabel: ''
+            tableYear: '',
+
+            infoPlanet: {
+                id: 2,
+                ell1: null,
+                ell2: null,
+                ell3: null
+            },
+            filterPlanet: 'planets',
+            loading: true,
+
+            heroes: [],
+            error: false,
+            loadingHero: false,
+            activeElement: null
         };
     }
+
+    planetButtons = [
+        {name: 'planets', label: "planets"},
+        {name: 'characters', label: "characters"}
+    ];
 
     componentDidCatch(error, errorInfo) {
         this.setState({hasError: true})
     }
-
-    sortObject = () => {
-        const data = {...this.state.chronology.items};
-        const sorted = {};
-        Object
-            .keys(data).sort((a, b) => {
-            return data[a].age - data[b].age;
-        })
-            .forEach((key, index) => {
-                sorted[index] = {...data[key]};
-            });
-        this.setState({
-            chronology: {items: {...sorted}}
-        });
-    };
 
     createItemObj = (year, text) => {
         let lastIndex = {...this.state.lastIndex};
@@ -94,19 +96,33 @@ export default class Home extends Component {
             }
             return item
         }, {});
-
         this.setState({
             chronology: {items: {...newObject}}
         });
     };
 
-
     // table
+    tableSortObject = () => {
+        const data = {...this.state.chronology.items};
+        const sorted = {};
+        Object
+            .keys(data).sort((a, b) => {
+            return data[a].age - data[b].age;
+        })
+            .forEach((key, index) => {
+                sorted[index] = {...data[key]};
+            });
+        this.setState({
+            chronology: {items: {...sorted}}
+        });
+    };
+
     onLabelChange = (e) => {
         this.setState({
             tableLabel: e.target.value
         });
     };
+
     onYearChange = (e) => {
         this.setState({
             tableYear: e.target.value
@@ -115,8 +131,7 @@ export default class Home extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        const {onAddItem} = this.props;
-        onAddItem(this.state.tableYear, this.state.tableLabel);
+        this.addItemObject(this.state.tableYear, this.state.tableLabel);
         this.setState({
             tableLabel: '',
             tableYear: ''
@@ -127,7 +142,7 @@ export default class Home extends Component {
         const {chronology: {items}} = {...this.state};
         const newElements = [];
         for (let index in items) {
-            if (items.hasOwnProperty(index)) { // ESLint - просит что бы я поставли такую проверку, не могу понять зачем ???
+            if (items.hasOwnProperty(index)) {
                 newElements[index] = this.createTableItem(items[index].age, items[index].events, index, this.deleteItem);
             }
         }
@@ -144,28 +159,174 @@ export default class Home extends Component {
             </li>
         )
     };
-
-
 //Table ***
 
+//Planet ***
+    createButtons = () => {
+        const {filterPlanet} = this.state;
+        return this.planetButtons.map(({name, label}) => {
+            const isActive = filterPlanet === name;
+            const clazz = isActive ? 'active-button' : 'btn-outline-secondary';
+            return (
+                <button type="button"
+                        className={`btn ${clazz}`}
+                        key={label}
+                        onClick={() => this.onFilterChange(name)}>
+                    {name}
+                </button>
+            )
+        });
+    };
+
+    onFilterChange = (filterPlanet) => {
+        this.setState({filterPlanet});
+    };
+
+    static generationRandomId = () => Math.floor(Math.random() * 10 + 2);
+
+    getItem = (query) => {
+        query(Home.generationRandomId())
+            .then((infoPlanet) => {
+                this.setState({
+                    infoPlanet: infoPlanet,
+                    loading: false
+                });
+            });
+    };
+
+    onLoadingFalse() {
+        this.setState(
+            {loading: true}
+        )
+    }
+
+    filter(filterPlanet) {
+        this.onLoadingFalse();
+        switch (filterPlanet) {
+            case 'planets':
+                return this.getItem(this.swapiService.getPlanet);
+            case "characters" :
+                return this.getItem(this.swapiService.getPerson);
+            default:
+                console.log("default");
+        }
+    }
+
+    componentDidMount() {
+        const {filterPlanet} = this.state;
+        this.filter(filterPlanet);
+
+        this.swapiService.getAllPeople().then((heroes) => {
+            this.setState({
+                heroes,
+                loadingHero: true
+            });
+        }).catch(() => {
+            const {error} = this.state;
+            this.setState({error: !error});
+        });
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        if (nextState.filterPlanet !== this.state.filterPlanet) {
+            this.filter(nextState.filterPlanet)
+        }
+    }
+//Planet ***
+
+// hero ***
+    heroItem = () => {
+        const {heroes} = {...this.state};
+        const {activeElement} = this.state;
+        const items = heroes.map((item, index) => {
+            return (
+                <li
+                    className={'draggable__item__li ' + (activeElement === index ? 'drag__active' : '')}
+                    key={index}
+                    onDragOver={() => this.onDragOver(index)}
+                    onClick={(e) => this.handleClick(e, index)}>
+                    <div
+                        className="drag"
+                        draggable
+                        onDragStart={(e) => this.onDragStart(e, index)}
+                    >
+                        <HeroItems
+                            info={item}
+                        />
+                    </div>
+                </li>
+            )
+        });
+        return (items);
+    };
+
+    onDragStart = (e, index) => {
+        this.draggedItem = this.state.heroes[index];
+        e.dataTransfer.effectAllowed = "move";
+        e.dataTransfer.setData("text/html", e.target.parentNode);
+    };
+
+    onDragOver = index => {
+        const draggedOverItem = this.state.heroes[index];
+        if (this.draggedItem === draggedOverItem) {
+            return;
+        }
+        let heroes = this.state.heroes.filter(item => item !== this.draggedItem);
+        heroes.splice(index, 0, this.draggedItem);
+        this.setState({heroes, activeElement: index});
+    };
+
+    handleClick = (e, index) => {
+        if (e.ctrlKey) {
+            const {activeElement} = this.state;
+            if (activeElement === index) {
+                this.setState({
+                    activeElement: null
+                })
+            }
+            return;
+        }
+        if (e.altKey) {
+            this.setState({
+                activeElement: index
+            });
+        }
+    };
+
+    //hero ***
     render() {
-        const {person, hasError} = this.state;
+        const {person, hasError, tableLabel, tableYear} = this.state;
+        const {loading, infoPlanet, filterPlanet} = this.state;
         const tableItems = this.createTable();
-        console.log(tableItems);
+        const buttons = this.createButtons();
+
+        const {loadingHero, error} = this.state;
+        const itemsHero = (loadingHero || !error) ? this.heroItem() : null;
         if (hasError) {
             return <ErrorIndicator/>
         }
-
         return (
             <HomeView
                 date={person}
-                talbeItems={tableItems}
+
+                tableItems={tableItems}
+                tableLabel={tableLabel}
+                tableYear={tableYear}
                 onAddItem={this.addItemObject}
                 onDeleteItem={this.deleteItem}
-                onSortTable={this.sortObject}
+                onSortTable={this.tableSortObject}
                 onTableLabelChange={this.onLabelChange}
                 onTableYearChange={this.onYearChange}
                 onTableSubmit={this.onSubmit}
+
+                planetButtons={buttons}
+                planetLoading={loading}
+                planetInfo={infoPlanet}
+                planetFilter={filterPlanet}
+
+                heroItems={itemsHero}
+                heroError={error}
+                loadingHero={loadingHero}
             />
         )
     }

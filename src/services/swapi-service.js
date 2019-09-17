@@ -11,16 +11,16 @@ export default class SwapiServise {
         return body
     };
 
-    async getPerson(id) {
+    getPerson = async (id) => {
         const person = await this.getResource(`/people/${id}/`);
         return this._transformPerson(person);
-    }
+    };
 
 
-    async getPlanet(id) {
+    getPlanet = async (id) => {
         const planet = await this.getResource(`/planets/${id}/`);
         return this._transformPlanet(planet);
-    }
+    };
 
     _extractId(item) {
         const idRegExp = /\/(\d*)\/$/;
@@ -48,9 +48,9 @@ export default class SwapiServise {
         return {
             id: this._extractId(person),
             name: person.name,
-            gender: person.gender,
-            birth: person.birth_year,
-            eye: person.eye_color
+            ell1: person.gender,
+            ell2: person.birth_year,
+            ell3: person.eye_color
         }
     }
 }
