@@ -1,12 +1,13 @@
+@import "../../../mixins/mixin";
 .section-5 {
   background-color: #222;
   padding: 20px; }
 
 .button-block {
-  display: flex; }
+  @include display-flex(); }
 
 .btn {
-  flex: 0 0 50%;
+  @include flex(0 0 50%);
   background-color: #303030;
   padding: 10px;
   border: 1px solid black; }
@@ -17,7 +18,7 @@
   color: #5f5d5a; }
 
 .random-planet {
-  display: flex;
+  @include display-flex();
   padding: 2rem;
   background-color: #303030; }
 

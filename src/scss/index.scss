@@ -68,7 +68,7 @@
 }
 
 .portfolio {
-  @include display-flex ();
+  @include display-flex();
   @include flex-wrap(wrap);
   padding: 90px 0;
 }
