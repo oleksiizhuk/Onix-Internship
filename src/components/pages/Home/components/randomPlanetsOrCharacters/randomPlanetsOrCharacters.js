@@ -1,6 +1,7 @@
 import React from "react";
 import Spinner from '../spinner/spinner';
 import '../../../../../scss/pages/home/component/randomPlanetsOrCharacters.scss';
+import PropTypes from "prop-types";
 
 const randomPlanetsOrCharacters = ({planetButtons, planetLoading, planetInfo, planetFilter}) => {
 
@@ -48,6 +49,13 @@ const randomPlanetsOrCharacters = ({planetButtons, planetLoading, planetInfo, pl
             </div>
         </div>
     )
+};
+
+randomPlanetsOrCharacters.propTypes = {
+    planetButtons: PropTypes.array,
+    planetLoading: PropTypes.bool,
+    planetInfo: PropTypes.object,
+    planetFilter: PropTypes.string,
 };
 
 export default randomPlanetsOrCharacters;

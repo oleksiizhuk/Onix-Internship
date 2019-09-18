@@ -1,4 +1,5 @@
 import React, {Fragment} from 'react';
+import PropTypes from 'prop-types';
 import Portfolio from './components/portfolio/portfolio'
 import About from './components/about/about';
 import GetInTouch from './components/getInTouch/getInTouch';
@@ -41,6 +42,27 @@ const homeView = (props) => {
             <ErrorButton/>
         </Fragment>
     )
+};
+
+homeView.propTypes = {
+    date: PropTypes.object,
+    tableItems: PropTypes.array,
+    tableLabel: PropTypes.string,
+    tableYear: PropTypes.string,
+    onAddItem: PropTypes.func,
+    onSortTable: PropTypes.func,
+    onTableLabelChange: PropTypes.func,
+    onTableYearChange: PropTypes.func,
+    onTableSubmit: PropTypes.func,
+
+    planetButtons: PropTypes.array,
+    planetLoading: PropTypes.bool,
+    planetInfo: PropTypes.object,
+    planetFilter: PropTypes.string,
+
+    heroItems: PropTypes.array,
+    heroError: PropTypes.bool,
+    loadingHero: PropTypes.bool
 };
 
 export default homeView;

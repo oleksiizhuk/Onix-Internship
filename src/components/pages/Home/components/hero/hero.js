@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ErrorIndicator from '../errorIndicator/errorIndicator';
 import Spinner from '../spinner/spinner';
 import '../../../../../scss/pages/home/component/hero.scss';
@@ -20,5 +21,11 @@ const hero = (props) => {
         </div>
     )
 
+};
+
+hero.proptype = {
+    heroItems: PropTypes.array,
+    heroError: PropTypes.bool,
+    loadingHero: PropTypes.bool
 };
 export default hero;

@@ -1,5 +1,5 @@
 import React from "react";
-import PropsType from 'prop-types';
+import PropTypes from 'prop-types';
 import Button from '../../../../elements/Button/Button';
 import Input from '../../../../elements/Input/Input'
 
@@ -50,8 +50,12 @@ const table = ({onSortTable, tableItems, onTableLabelChange, onTableYearChange, 
 export default table;
 
 table.propTypes = {
-    items: PropsType.object,
-    onAddItem: PropsType.func,
-    onDeleteItem: PropsType.func,
-    onSortTable: PropsType.func
+    tableItems: PropTypes.array,
+    tableLabel: PropTypes.string,
+    tableYear: PropTypes.string,
+    onAddItem: PropTypes.func,
+    onSortTable: PropTypes.func,
+    onTableLabelChange: PropTypes.func,
+    onTableYearChange: PropTypes.func,
+    onTableSubmit: PropTypes.func,
 };
