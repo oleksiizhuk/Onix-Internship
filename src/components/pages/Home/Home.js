@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
-import SWApiService from '../../../services/swapi-service';
 import HomeView from './HomeView';
-import ErrorIndicator from './components/errorIndicator/errorIndicator';
-import TableItem from "./components/tableItem/tableItem";
-import HeroItems from "./components/heroItems/heroItem";
+import ErrorIndicator from './components/ErrorIndicator';
+import TableItem from "./components/TableItem";
+import HeroItems from "./components/HeroItem";
 
 export default class Home extends Component {
-    swapiService = new SWApiService();
 
     constructor(props) {
         super(props);
@@ -26,7 +24,7 @@ export default class Home extends Component {
                     twitter: 'https://twitter.com/Oleksii82814989',
                     gMail: 'oleksiizhuk.att@gmail.com',
                     github: 'https://github.com/oleksiizhuk',
-                    linkedIn: 'https://www.linkedin.com/in/%D0%B0%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B9-%D0%B6%D1%83%D0%BA-317a92162/'
+                    linkedIn: 'https://www.linkedin.com/in/%D0%B0%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B9-%D0%B6%D1%83%D0%BA-317a92162'
                 }
             },
             chronology: {
@@ -62,6 +60,55 @@ export default class Home extends Component {
                 {name: 'characters', label: "characters"}
             ]
         };
+    }
+
+    getResource = async (url) => {
+        const apiBase = process.env.REACT_APP_API_BASE;
+        const res = await fetch(`${apiBase}${url}`);
+        return await res.json();
+    };
+
+    getPerson = async (id) => {
+        const person = await this.getResource(`/people/${id}/`);
+        return this.transformPerson(person);
+    };
+
+
+    getPlanet = async (id) => {
+        const planet = await this.getResource(`/planets/${id}/`);
+        return this.transformPlanet(planet);
+    };
+
+    extractId = ({url}) => {
+        const idRegExp = /\/(\d*)\/$/;
+        return url.match(idRegExp)[1];
+    };
+
+    getAllPeople = async () => {
+        const res = await this.getResource(`/people/`);
+        return res.results.map((item) => {
+            return this.transformPerson(item)
+        });
+    };
+
+    transformPlanet(planet) {
+        return {
+            id: this.extractId(planet),
+            name: planet.name,
+            ell1: planet.population,
+            ell2: planet.rotation_period,
+            ell3: planet.diameter
+        }
+    }
+
+    transformPerson(person) {
+        return {
+            id: this.extractId(person),
+            name: person.name,
+            ell1: person.gender,
+            ell2: person.birth_year,
+            ell3: person.eye_color
+        }
     }
 
     componentDidCatch(error, errorInfo) {
@@ -201,32 +248,11 @@ export default class Home extends Component {
         this.onLoadingFalse();
         switch (filterPlanet) {
             case 'planets':
-                return this.getItem(this.swapiService.getPlanet);
+                return this.getItem(this.getPlanet);
             case "characters" :
-                return this.getItem(this.swapiService.getPerson);
+                return this.getItem(this.getPerson);
             default:
                 console.log("default");
-        }
-    }
-
-    componentDidMount() {
-        const {filterPlanet} = this.state;
-        this.filter(filterPlanet);
-
-        this.swapiService.getAllPeople().then((heroes) => {
-            this.setState({
-                heroes,
-                loadingHero: true
-            });
-        }).catch(() => {
-            const {error} = this.state;
-            this.setState({error: !error});
-        });
-    }
-
-    componentWillUpdate(nextProps, nextState) {
-        if (nextState.filterPlanet !== this.state.filterPlanet) {
-            this.filter(nextState.filterPlanet)
         }
     }
 
@@ -249,7 +275,7 @@ export default class Home extends Component {
                         onDragStart={(e) => this.onDragStart(e, index)}
                     >
                         <HeroItems
-                            info={item}
+                            item={item}
                         />
                     </div>
                 </li>
@@ -292,6 +318,28 @@ export default class Home extends Component {
     };
 
     //hero ***
+
+    componentDidMount() {
+        const {filterPlanet} = this.state;
+        this.filter(filterPlanet);
+
+        this.getAllPeople().then((heroes) => {
+            this.setState({
+                heroes,
+                loadingHero: true
+            });
+        }).catch(() => {
+            const {error} = this.state;
+            this.setState({error: !error});
+        });
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        if (nextState.filterPlanet !== this.state.filterPlanet) {
+            this.filter(nextState.filterPlanet)
+        }
+    }
+
     render() {
         const {
             person,
@@ -318,7 +366,6 @@ export default class Home extends Component {
                 tableItems={tableItems}
                 tableLabel={tableLabel}
                 tableYear={tableYear}
-                onAddItem={this.addItemObject}
                 onDeleteItem={this.deleteTableItem}
                 onSortTable={this.tableSortObject}
                 onTableLabelChange={this.onLabelChange}

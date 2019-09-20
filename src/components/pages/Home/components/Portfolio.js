@@ -1,21 +1,21 @@
 import React from 'react';
 
-import img1 from '../../../../../assets/images/honeycomb/1.png';
-import img2 from '../../../../../assets/images/honeycomb/2.png';
-import img3 from '../../../../../assets/images/honeycomb/3.png';
-import img4 from '../../../../../assets/images/honeycomb/4.png';
-import img5 from '../../../../../assets/images/honeycomb/5.png';
-import img6 from '../../../../../assets/images/honeycomb/6.png';
-import img7 from '../../../../../assets/images/honeycomb/7.png';
-import img8 from '../../../../../assets/images/honeycomb/8.png';
-import img9 from '../../../../../assets/images/honeycomb/9.png';
-import img10 from '../../../../../assets/images/honeycomb/10.png';
-import img11 from '../../../../../assets/images/honeycomb/11.png';
-import img12 from '../../../../../assets/images/honeycomb/12.png';
-import img13 from '../../../../../assets/images/honeycomb/13.png';
+import img1 from '../../../../assets/images/honeycomb/1.png';
+import img2 from '../../../../assets/images/honeycomb/2.png';
+import img3 from '../../../../assets/images/honeycomb/3.png';
+import img4 from '../../../../assets/images/honeycomb/4.png';
+import img5 from '../../../../assets/images/honeycomb/5.png';
+import img6 from '../../../../assets/images/honeycomb/6.png';
+import img7 from '../../../../assets/images/honeycomb/7.png';
+import img8 from '../../../../assets/images/honeycomb/8.png';
+import img9 from '../../../../assets/images/honeycomb/9.png';
+import img10 from '../../../../assets/images/honeycomb/10.png';
+import img11 from '../../../../assets/images/honeycomb/11.png';
+import img12 from '../../../../assets/images/honeycomb/12.png';
+import img13 from '../../../../assets/images/honeycomb/13.png';
 
 
-const portfolio = () => {
+const Portfolio = () => {
     return (
         <div className="section-1" id="section-1">
             <div className="container-portfolio">
@@ -96,4 +96,4 @@ const portfolio = () => {
     )
 };
 
-export default portfolio;
+export default Portfolio;

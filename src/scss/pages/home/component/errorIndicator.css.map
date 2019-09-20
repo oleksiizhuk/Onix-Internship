@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,gBAAiB;EACf,MAAM,EAAE,MAAM;;AAGhB,gBAAiB;EACf,WAAW,EAAE,IAAI;;AAGnB,sBAAuB;EACrB,SAAS,EAAE,IAAI;;AAGjB,qBAAsB;EACpB,OAAO,EAAE,KAAK;EACd,UAAU,EAAE,MAAM;EAClB,KAAK,EAAE,OAAO",
-"sources": ["errorIndicator.scss"],
-"names": [],
-"file": "errorIndicator.css"
-}

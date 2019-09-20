@@ -1,10 +1,13 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import Button from '../../../../elements/Button/Button';
-import Input from '../../../../elements/Input/Input'
+import Button from '../../../Elements/Button/Button';
+import Input from '../../../Elements/Input/Input';
 
 
-const table = ({onSortTable, tableItems, onTableLabelChange, onTableYearChange, onTableSubmit, tableLabel, tableYear}) => {
+const Table = ({
+                   onSortTable, tableItems, onTableLabelChange, onTableYearChange, onTableSubmit, tableLabel, tableYear
+               }
+) => {
 
     return (
         <div className='section-4' id='section-4'>
@@ -47,15 +50,24 @@ const table = ({onSortTable, tableItems, onTableLabelChange, onTableYearChange, 
 
 };
 
-export default table;
+export default Table;
 
-table.propTypes = {
+Table.propTypes = {
     tableItems: PropTypes.array,
     tableLabel: PropTypes.string,
     tableYear: PropTypes.string,
-    onAddItem: PropTypes.func,
     onSortTable: PropTypes.func,
     onTableLabelChange: PropTypes.func,
     onTableYearChange: PropTypes.func,
     onTableSubmit: PropTypes.func,
+};
+
+Table.defaultProps = {
+    tableItems: [],
+    tableLabel: "",
+    tableYear: "",
+    onSortTable: () => {},
+    onTableLabelChange: () => {},
+    onTableYearChange: () => {},
+    onTableSubmit: () => {}
 };

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import '../../../../../scss/pages/home/component/errorIndicator.scss'
+import '../../../../scss/pages/home/component/errorIndicator.scss'
 
-const errorApi = () => {
+const ErrorApi = () => {
     return (
         <div className='error-indicator'>
             <span className='boom'>BOOM!</span>
@@ -12,4 +12,4 @@ const errorApi = () => {
     )
 };
 
-export default errorApi;
+export default ErrorApi;

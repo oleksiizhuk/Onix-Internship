@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MyPhoto from '../../../../../assets/images/my-photo.jpg';
+import MyPhoto from '../../../../assets/images/my-photo.jpg';
 
 
-const about = (
+const About = (
     {
         date: {
             name, surname, age, city, interests, hobby, job,
@@ -76,7 +76,7 @@ const about = (
     )
 };
 
-about.propTypes = {
+About.propTypes = {
     name: PropTypes.string,
     surname: PropTypes.string,
     age: PropTypes.number,
@@ -91,5 +91,19 @@ about.propTypes = {
     linkedIn: PropTypes.string
 };
 
+About.defaultProps = {
+    name: "",
+    surname: "",
+    age: 0,
+    city: "",
+    interests: "",
+    hobby: "",
+    job: "",
+    fb: "",
+    twitter: "",
+    gMail: "",
+    github: "",
+    linkedIn: "<a href=\"https://github.com/oleksiizhuk\"><i class=\"fab fa-git-square\" aria-hidden=\"true\"></i></a>"
+};
 
-export default about;
+export default About;

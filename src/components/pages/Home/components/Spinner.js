@@ -1,7 +1,7 @@
 import React from 'react';
-import '../../../../../scss/pages/home/component/spinner.css';
+import '../../../../scss/pages/home/component/spinner.scss';
 
-const loading = () => {
+const Spinner = () => {
     return (
         <div className="lds-css ng-scope">
             <div className="lds-facebook">
@@ -13,5 +13,5 @@ const loading = () => {
     )
 };
 
-export default loading;
+export default Spinner;
 

@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,WAAY;EACV,KAAK,EAAE,IAAI;EACX,gBAAgB,EAAE,GAAG",
-"sources": ["errorButton.scss"],
-"names": [],
-"file": "errorButton.css"
-}

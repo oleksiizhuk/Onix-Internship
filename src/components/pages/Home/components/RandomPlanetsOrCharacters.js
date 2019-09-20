@@ -1,9 +1,9 @@
 import React from "react";
-import Spinner from '../spinner/spinner';
-import '../../../../../scss/pages/home/component/randomPlanetsOrCharacters.scss';
+import Spinner from './Spinner';
+import '../../../../scss/pages/home/component/randomPlanetsOrCharacters.scss';
 import PropTypes from "prop-types";
 
-const randomPlanetsOrCharacters = ({planetButtons, planetLoading, planetInfo, planetFilter}) => {
+const RandomPlanetsOrCharacters = ({planetButtons, planetLoading, planetInfo, planetFilter}) => {
 
     if (planetLoading) {
         return (
@@ -51,11 +51,17 @@ const randomPlanetsOrCharacters = ({planetButtons, planetLoading, planetInfo, pl
     )
 };
 
-randomPlanetsOrCharacters.propTypes = {
+RandomPlanetsOrCharacters.propTypes = {
     planetButtons: PropTypes.array,
     planetLoading: PropTypes.bool,
     planetInfo: PropTypes.object,
     planetFilter: PropTypes.string,
 };
 
-export default randomPlanetsOrCharacters;
+RandomPlanetsOrCharacters.defaultProps = {
+    planetButtons: [],
+    planetLoading: true,
+    planetInfo: {},
+    planetFilter: '',
+};
+export default RandomPlanetsOrCharacters;

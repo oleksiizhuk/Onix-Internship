@@ -1,24 +1,22 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
-import '../../../../../scss/pages/home/component/heroItem.scss';
+import '../../../../scss/pages/home/component/heroItem.scss';
 
-const heroItem = ({info: {id, name, gender, birth, eye}}) => {
-
+const HeroItem = ({item: {id, name, ell1, ell2, ell3}}) => {
     return (
-
         <Fragment>
             <span className='heroItem__span'>
                 <img src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} alt=""/>
             </span>
             <span className='heroItem__span'>Name: {name}</span>
-            <span className='heroItem__span'>Gender: {gender}</span>
-            <span className='heroItem__span'>birth: {birth}</span>
-            <span className='heroItem__span'>eye: {eye}</span>
+            <span className='heroItem__span'>Gender: {ell1}</span>
+            <span className='heroItem__span'>birth: {ell2}</span>
+            <span className='heroItem__span'>eye: {ell3}</span>
         </Fragment>
     )
 };
 
-heroItem.propTypes = {
+HeroItem.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
     gender: PropTypes.string,
@@ -26,5 +24,12 @@ heroItem.propTypes = {
     eye: PropTypes.string,
 };
 
+HeroItem.defaultProps = {
+    id: 0,
+    name: '',
+    gender: '',
+    birth: '',
+    eye: '',
+};
 
-export default heroItem;
+export default HeroItem;

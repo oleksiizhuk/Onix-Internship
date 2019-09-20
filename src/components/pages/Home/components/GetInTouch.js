@@ -1,6 +1,6 @@
 import React from 'react';
 
-const getInTouch = () => {
+const GetInTouch = () => {
     return (
         <div className="section-3" id="section-3">
 
@@ -47,4 +47,4 @@ const getInTouch = () => {
     )
 };
 
-export default getInTouch;
+export default GetInTouch;

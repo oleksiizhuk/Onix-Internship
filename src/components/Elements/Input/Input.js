@@ -1,6 +1,6 @@
 import React from 'react';
 
-const input = ({type, value, className, placeholder, min, max, onChange}) => {
+const Input = ({type, value, className, placeholder, min, max, onChange}) => {
     return (
         <input
             type={type}
@@ -14,4 +14,4 @@ const input = ({type, value, className, placeholder, min, max, onChange}) => {
     )
 };
 
-export default input
+export default Input
