@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Portfolio from './components/Portfolio';
 import About from './components/About';
@@ -15,9 +15,9 @@ const HomeView = (
   }
 ) => {
   return (
-    <Fragment>
-      <Portfolio/>
-      <About date={date}/>
+    <>
+      <Portfolio />
+      <About date={date} />
       <Table
         tableItems={tableItems}
         tableLabel={tableLabel}
@@ -38,8 +38,8 @@ const HomeView = (
         heroError={heroError}
         loadingHero={loadingHero}
       />
-      <GetInTouch/>
-    </Fragment>
+      <GetInTouch />
+    </>
   );
 };
 

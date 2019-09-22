@@ -1,11 +1,11 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 
 const pageView = (props) => {
-    return (
-        <Fragment>
-            {props}
-        </Fragment>
-    )
+  return (
+    <>
+      {props}
+    </>
+  );
 };
 
 export default pageView;

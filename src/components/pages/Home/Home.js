@@ -5,7 +5,6 @@ import TableItem from './components/TableItem';
 import HeroItems from './components/HeroItem';
 
 export default class Home extends Component {
-
   constructor(props) {
     super(props);
 
@@ -24,7 +23,8 @@ export default class Home extends Component {
           twitter: 'https://twitter.com/Oleksii82814989',
           gMail: 'oleksiizhuk.att@gmail.com',
           github: 'https://github.com/oleksiizhuk',
-          linkedIn: 'https://www.linkedin.com/in/%D0%B0%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B9-%D0%B6%D1%83%D0%BA-317a92162'
+          linkedIn: 'https://www.linkedin.com/in/%D0%B0%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B9'
+            + '-%D0%B6%D1%83%D0%BA-317a92162'
         }
       },
       chronology: {
@@ -77,10 +77,38 @@ export default class Home extends Component {
     };
   }
 
+  componentDidCatch() {
+    this.setState({ hasError: true });
+  }
+
+  componentWillUpdate = (nextProps, nextState) => {
+    const { filterPlanet } = this.state;
+    if (nextState.filterPlanet !== filterPlanet) {
+      this.filter(nextState.filterPlanet);
+    }
+  };
+
+  componentDidMount = () => {
+    const { filterPlanet } = this.state;
+    this.filter(filterPlanet);
+
+    this.getAllPeople()
+      .then((heroes) => {
+        this.setState({
+          heroes,
+          loadingHero: true
+        });
+      })
+      .catch(() => {
+        const { error } = this.state;
+        this.setState({ error: !error });
+      });
+  };
+
   getResource = async (url) => {
     const apiBase = process.env.REACT_APP_API_BASE;
     const res = await fetch(`${apiBase}${url}`);
-    return await res.json();
+    return res.json();
   };
 
   getPerson = async (id) => {
@@ -100,7 +128,7 @@ export default class Home extends Component {
   };
 
   getAllPeople = async () => {
-    const res = await this.getResource(`/people/`);
+    const res = await this.getResource('/people/');
     return res.results.map((item) => {
       return this.transformPerson(item);
     });
@@ -126,11 +154,8 @@ export default class Home extends Component {
     };
   }
 
-  componentDidCatch(error, errorInfo) {
-    this.setState({ hasError: true });
-  }
 
-// table
+  // table
   createTableObject = (year, text, index) => {
     return {
       [index]: {
@@ -141,7 +166,9 @@ export default class Home extends Component {
   };
 
   addItemObject = () => {
-    const { tableYear, tableLabel, lastIndex: { id: lastIndex }, chronology: { items } } = this.state;
+    const {
+      tableYear, tableLabel, lastIndex: { id: lastIndex }, chronology: { items }
+    } = this.state;
     const newIndex = lastIndex + 1;
     const newItem = this.createTableObject(tableYear, tableLabel, newIndex);
     this.setState({
@@ -151,13 +178,13 @@ export default class Home extends Component {
   };
 
   deleteTableItem = (id) => {
-    const newItems = { ...this.state.chronology.items };
-    const newObject = Object.keys(newItems)
-      .reduce((item, index) => {
+    const { chronology: { items } } = { ...this.state };
+    const newObject = Object.keys(items)
+      .reduce((acc, index) => {
         if (index !== id) {
-          item[index] = newItems[index];
+          acc[index] = items[index];
         }
-        return item;
+        return acc;
       }, {});
     this.setState({
       chronology: { items: { ...newObject } }
@@ -165,15 +192,15 @@ export default class Home extends Component {
   };
 
   tableSortObject = () => {
-    const data = { ...this.state.chronology.items };
+    const { chronology: { items } } = { ...this.state };
     const sorted = {};
     Object
-      .keys(data)
+      .keys(items)
       .sort((a, b) => {
-        return data[a].age - data[b].age;
+        return items[a].age - items[b].age;
       })
       .forEach((key, index) => {
-        sorted[index] = { ...data[key] };
+        sorted[index] = { ...items[key] };
       });
     this.setState({
       chronology: { items: { ...sorted } }
@@ -194,7 +221,8 @@ export default class Home extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.addItemObject(this.state.tableYear, this.state.tableLabel);
+    const { tableYear, tableLabel } = this.state;
+    this.addItemObject(tableYear, tableLabel);
     this.setState({
       tableLabel: '',
       tableYear: ''
@@ -204,17 +232,28 @@ export default class Home extends Component {
   createTable = () => {
     const { chronology: { items } } = { ...this.state };
     const newElements = [];
-    for (let index in items) {
-      if (items.hasOwnProperty(index)) {
-        newElements[index] = this.createTableItem(items[index].age, items[index].events, index,);
-      }
+    for (const index in items) {
+      newElements[index] = this.createTableItem(items[index].age, items[index].events, index);
     }
     return newElements;
   };
 
+  /* createTable = () => {
+    const { chronology: { items } } = { ...this.state };
+    const newEl = Object.keys(items);
+    console.log(newEl);
+    const newElements = newEl
+      .map((item, index) => {
+        console.log(items[index].age);
+        console.log(items);
+        return this.createTableItem(items[index].age, items[index].events, index.toString());
+      });
+    return newElements;
+  }; */
+
   createTableItem = (age, text, index) => {
     return (
-      <li key={index} className='section-4__item-li'>
+      <li key={index} className="section-4__item-li">
         <TableItem
           age={age}
           text={text}
@@ -223,19 +262,21 @@ export default class Home extends Component {
       </li>
     );
   };
-//Table ***
+  // Table ***
 
-//Planet ***
+  // Planet ***
   createButtons = () => {
     const { filterPlanet, planetButtons } = this.state;
     return planetButtons.map(({ name, label }) => {
       const isActive = filterPlanet === name;
       const clazz = isActive ? 'active-button' : 'btn-outline-secondary';
       return (
-        <button type="button"
-                className={`btn ${clazz}`}
-                key={label}
-                onClick={() => this.onFilterChange(name)}>
+        <button
+          type="button"
+          className={`btn ${clazz}`}
+          key={label}
+          onClick={() => this.onFilterChange(name)}
+        >
           {name}
         </button>
       );
@@ -252,43 +293,41 @@ export default class Home extends Component {
     query(this.generationRandomId())
       .then((infoPlanet) => {
         this.setState({
-          infoPlanet: infoPlanet,
+          infoPlanet,
           loading: false
         });
       });
   };
 
-  onLoadingFalse() {
+  onLoadingFalse = () => {
     this.setState(
       { loading: true }
     );
-  }
+  };
 
-  filter(filterPlanet) {
+  filter = (filterPlanet) => {
     this.onLoadingFalse();
-    switch (filterPlanet) {
-      case 'planets':
-        return this.getItem(this.getPlanet);
-      case 'characters' :
-        return this.getItem(this.getPerson);
-      default:
-        console.log('default');
+    if (filterPlanet === 'planets') {
+      this.getItem(this.getPlanet);
+    } else if (filterPlanet === 'characters') {
+      this.getItem(this.getPerson);
     }
-  }
+  };
 
-//Planet ***
+  // Planet ***
 
-// hero ***
+  // hero ***
   heroItem = () => {
     const { heroes } = { ...this.state };
     const { activeElement } = this.state;
     const items = heroes.map((item, index) => {
       return (
         <li
-          className={'draggable__item__li ' + (activeElement === index ? 'drag__active' : '')}
-          key={index}
+          className={`draggable__item__li ${activeElement === index ? 'drag__active' : ''}`}
+          key={item.id}
           onDragOver={() => this.onDragOver(index)}
-          onClick={(e) => this.handleClick(e, index)}>
+          onClick={(e) => this.handleClick(e, index)}
+        >
           <div
             className="drag"
             draggable
@@ -305,17 +344,19 @@ export default class Home extends Component {
   };
 
   onDragStart = (e, index) => {
-    this.draggedItem = this.state.heroes[index];
+    const { heroes } = this.state;
+    this.draggedItem = heroes[index];
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.setData('text/html', e.target.parentNode);
   };
 
-  onDragOver = index => {
-    const draggedOverItem = this.state.heroes[index];
+  onDragOver = (index) => {
+    const { heroes: heroes1 } = this.state;
+    const draggedOverItem = heroes1[index];
     if (this.draggedItem === draggedOverItem) {
       return;
     }
-    let heroes = this.state.heroes.filter(item => item !== this.draggedItem);
+    const heroes = heroes1.filter((item) => item !== this.draggedItem);
     heroes.splice(index, 0, this.draggedItem);
     this.setState({
       heroes,
@@ -340,31 +381,7 @@ export default class Home extends Component {
     }
   };
 
-  //hero ***
-
-  componentDidMount() {
-    const { filterPlanet } = this.state;
-    this.filter(filterPlanet);
-
-    this.getAllPeople()
-      .then((heroes) => {
-        this.setState({
-          heroes,
-          loadingHero: true
-        });
-      })
-      .catch(() => {
-        const { error } = this.state;
-        this.setState({ error: !error });
-      });
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    if (nextState.filterPlanet !== this.state.filterPlanet) {
-      this.filter(nextState.filterPlanet);
-    }
-  }
-
+  // hero ***
   render() {
     const {
       person,
@@ -382,7 +399,7 @@ export default class Home extends Component {
 
     const itemsHero = (loadingHero || !error) ? this.heroItem() : null;
     if (hasError) {
-      return <ErrorIndicator/>;
+      return <ErrorIndicator />;
     }
     return (
       <HomeView
@@ -408,4 +425,4 @@ export default class Home extends Component {
       />
     );
   }
-};
+}

@@ -6,7 +6,6 @@ import Home from './components/pages/Home/Home';
 import './scss/index.scss';
 
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.history = createBrowserHistory();
@@ -17,7 +16,7 @@ class App extends Component {
       <Router history={this.history}>
         <Page>
           <Switch>
-            <Route path="*" component={Home}/>
+            <Route path="*" component={Home} />
           </Switch>
         </Page>
       </Router>

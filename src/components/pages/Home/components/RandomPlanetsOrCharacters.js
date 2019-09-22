@@ -1,33 +1,40 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Spinner from './Spinner';
 import '../../../../scss/pages/home/component/randomPlanetsOrCharacters.scss';
-import PropTypes from 'prop-types';
 
-const RandomPlanetsOrCharacters = ({ planetButtons, planetLoading, planetInfo, planetFilter }) => {
 
+const RandomPlanetsOrCharacters = ({
+  planetButtons, planetLoading, planetInfo, planetFilter 
+}) => {
   if (planetLoading) {
     return (
-      <div className='section-5'>
+      <div className="section-5">
         <div className="container">
           <div className="random-planet jumbotron rounded">
-            <Spinner/>
+            <Spinner />
           </div>
         </div>
-      </div>);
+      </div>
+    );
   }
 
   return (
-    <div className='section-5'>
+    <div className="section-5">
       <div className="container">
-        <div className='button-block'>
+        <div className="button-block">
           {planetButtons}
         </div>
         <div className="random-planet jumbotron rounded">
 
-          {planetLoading ? <Spinner/> :
-            <img className="planet-image" alt={'test'}
-                 src={`https://starwars-visualguide.com/assets/img/${planetFilter}/${planetInfo.id}.jpg`}/>
-          }
+          {planetLoading ? <Spinner />
+            : (
+              <img
+                className="planet-image"
+                alt="test"
+                src={`https://starwars-visualguide.com/assets/img/${planetFilter}/${planetInfo.id}.jpg`}
+              />
+            )}
           <div>
             <h4>{planetInfo.name}</h4>
             <ul className="list-group list-group-flush">
