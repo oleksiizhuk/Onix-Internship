@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const TableItem = ({age, text, onDeleteItem}) => {
+    console.log(onDeleteItem);
     return (
         <span className='section-4__item-block'>
                 <span className='section-4__item-age'>{age}</span>
