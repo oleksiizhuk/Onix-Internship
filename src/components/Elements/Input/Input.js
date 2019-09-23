@@ -17,7 +17,7 @@ const Input = ({
   );
 };
 
-Input.prototype = {
+Input.propTypes = {
   type: PropTypes.string,
   className: PropTypes.string,
   value: PropTypes.string,

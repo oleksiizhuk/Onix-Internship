@@ -10,38 +10,35 @@ const Table = ({
   return (
     <div className="section-4" id="section-4">
       <div className="container">
-        <form className="section-4__form">
-          <Button
-            text="Cортировка"
-            className="section-4__sort-button"
-            type="button"
-            onClick={onSortTable}
-          />
-          <ul>
-            {tableItems}
-          </ul>
-          <Input
-            type="number"
-            placeholder="year"
-            min="1900"
-            max={new Date().getFullYear()}
-            value={tableYear}
-            onChange={onTableYearChange}
-            className="section-4__input-year"
-          />
-          <Input
-            type="text"
-            placeholder="event"
-            value={tableLabel}
-            onChange={onTableLabelChange}
-            className="section-4__input-text"
-          />
-          <Button
-            text="Добавить"
-            className="section-4__add-button"
-            onClick={onTableSubmit}
-          />
-        </form>
+        <Button
+          text="Cортировка"
+          className="section-4__sort-button"
+          onClick={onSortTable}
+        />
+        <ul>
+          {tableItems}
+        </ul>
+        <Input
+          type="number"
+          placeholder="year"
+          min="1900"
+          max={new Date().getFullYear()}
+          value={tableYear}
+          onChange={onTableYearChange}
+          className="section-4__input-year"
+        />
+        <Input
+          type="text"
+          placeholder="event"
+          value={tableLabel}
+          onChange={onTableLabelChange}
+          className="section-4__input-text"
+        />
+        <Button
+          text="Добавить"
+          className="section-4__add-button"
+          onClick={onTableSubmit}
+        />
       </div>
     </div>
   );
