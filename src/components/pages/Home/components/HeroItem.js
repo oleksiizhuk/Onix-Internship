@@ -33,20 +33,21 @@ eye:
 };
 
 HeroItem.propTypes = {
-  item: PropTypes.object,
+  item: PropTypes.objectOf,
   id: PropTypes.number,
   name: PropTypes.string,
-  gender: PropTypes.string,
-  birth: PropTypes.string,
-  eye: PropTypes.string,
+  ell1: PropTypes.string,
+  ell2: PropTypes.string,
+  ell3: PropTypes.string,
 };
 
 HeroItem.defaultProps = {
+  item: {},
   id: 0,
   name: '',
-  gender: '',
-  birth: '',
-  eye: '',
+  ell1: '',
+  ell2: '',
+  ell3: '',
 };
 
 export default HeroItem;

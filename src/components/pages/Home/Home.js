@@ -81,7 +81,7 @@ export default class Home extends Component {
     this.setState({ hasError: true });
   }
 
-  componentWillUpdate = (nextProps, nextState) => {
+  getSnapshotBeforeUpdate = (nextProps, nextState) => {
     const { filterPlanet } = this.state;
     if (nextState.filterPlanet !== filterPlanet) {
       this.filter(nextState.filterPlanet);
@@ -104,56 +104,6 @@ export default class Home extends Component {
         this.setState({ error: !error });
       });
   };
-
-  getResource = async (url) => {
-    const apiBase = process.env.REACT_APP_API_BASE;
-    const res = await fetch(`${apiBase}${url}`);
-    return res.json();
-  };
-
-  getPerson = async (id) => {
-    const person = await this.getResource(`/people/${id}/`);
-    return this.transformPerson(person);
-  };
-
-
-  getPlanet = async (id) => {
-    const planet = await this.getResource(`/planets/${id}/`);
-    return this.transformPlanet(planet);
-  };
-
-  extractId = ({ url }) => {
-    const idRegExp = /\/(\d*)\/$/;
-    return url.match(idRegExp)[1];
-  };
-
-  getAllPeople = async () => {
-    const res = await this.getResource('/people/');
-    return res.results.map((item) => {
-      return this.transformPerson(item);
-    });
-  };
-
-  transformPlanet(planet) {
-    return {
-      id: this.extractId(planet),
-      name: planet.name,
-      ell1: planet.population,
-      ell2: planet.rotation_period,
-      ell3: planet.diameter
-    };
-  }
-
-  transformPerson(person) {
-    return {
-      id: this.extractId(person),
-      name: person.name,
-      ell1: person.gender,
-      ell2: person.birth_year,
-      ell3: person.eye_color
-    };
-  }
-
 
   // table
   createTableObject = (year, text, index) => {
@@ -241,7 +191,6 @@ export default class Home extends Component {
   /* createTable = () => {
     const { chronology: { items } } = { ...this.state };
     const newEl = Object.keys(items);
-    console.log(newEl);
     const newElements = newEl
       .map((item, index) => {
         console.log(items[index].age);
@@ -380,6 +329,55 @@ export default class Home extends Component {
       });
     }
   };
+
+  getResource = async (url) => {
+    const apiBase = process.env.REACT_APP_API_BASE;
+    const res = await fetch(`${apiBase}${url}`);
+    return res.json();
+  };
+
+  getPerson = async (id) => {
+    const person = await this.getResource(`/people/${id}/`);
+    return this.transformPerson(person);
+  };
+
+
+  getPlanet = async (id) => {
+    const planet = await this.getResource(`/planets/${id}/`);
+    return this.transformPlanet(planet);
+  };
+
+  extractId = ({ url }) => {
+    const idRegExp = /\/(\d*)\/$/;
+    return url.match(idRegExp)[1];
+  };
+
+  getAllPeople = async () => {
+    const res = await this.getResource('/people/');
+    return res.results.map((item) => {
+      return this.transformPerson(item);
+    });
+  };
+
+  transformPlanet(planet) {
+    return {
+      id: this.extractId(planet),
+      name: planet.name,
+      ell1: planet.population,
+      ell2: planet.rotation_period,
+      ell3: planet.diameter
+    };
+  }
+
+  transformPerson(person) {
+    return {
+      id: this.extractId(person),
+      name: person.name,
+      ell1: person.gender,
+      ell2: person.birth_year,
+      ell3: person.eye_color
+    };
+  }
 
   // hero ***
   render() {

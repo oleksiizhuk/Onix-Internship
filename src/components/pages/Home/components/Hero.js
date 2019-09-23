@@ -23,16 +23,16 @@ const Hero = ({
   );
 };
 
-Hero.proptype = {
-  heroItems: PropTypes.array,
+Hero.propTypes = {
+  heroItems: PropTypes.objectOf,
   heroError: PropTypes.bool,
   loadingHero: PropTypes.bool
 };
 
 Hero.defaultProps = {
   heroItems: [],
-  heroError: true,
-  loadingHero: true
+  heroError: false,
+  loadingHero: false
 };
 
 export default Hero;

@@ -44,24 +44,43 @@ const HomeView = (
 };
 
 HomeView.propTypes = {
-  date: PropTypes.object,
-  tableItems: PropTypes.array,
+  date: PropTypes.objectOf,
+  tableItems: PropTypes.arrayOf,
   tableLabel: PropTypes.string,
   tableYear: PropTypes.string,
-  onAddItem: PropTypes.func,
   onSortTable: PropTypes.func,
   onTableLabelChange: PropTypes.func,
   onTableYearChange: PropTypes.func,
   onTableSubmit: PropTypes.func,
 
-  planetButtons: PropTypes.array,
+  planetButtons: PropTypes.arrayOf,
   planetLoading: PropTypes.bool,
-  planetInfo: PropTypes.object,
+  planetInfo: PropTypes.objectOf,
   planetFilter: PropTypes.string,
 
-  heroItems: PropTypes.array,
+  heroItems: PropTypes.arrayOf,
   heroError: PropTypes.bool,
   loadingHero: PropTypes.bool
+};
+
+HomeView.defaultProps = {
+  date: {},
+  tableItems: [],
+  tableLabel: '',
+  tableYear: '',
+  onSortTable: () => {},
+  onTableLabelChange: () => {},
+  onTableYearChange: () => {},
+  onTableSubmit: () => {},
+
+  planetButtons: [],
+  planetLoading: false,
+  planetInfo: {},
+  planetFilter: '',
+
+  heroItems: [],
+  heroError: false,
+  loadingHero: false
 };
 
 export default HomeView;
