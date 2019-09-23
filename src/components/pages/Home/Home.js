@@ -81,13 +81,6 @@ export default class Home extends Component {
     this.setState({ hasError: true });
   }
 
-  getSnapshotBeforeUpdate = (nextProps, nextState) => {
-    const { filterPlanet } = this.state;
-    if (nextState.filterPlanet !== filterPlanet) {
-      this.filter(nextState.filterPlanet);
-    }
-  };
-
   componentDidMount = () => {
     const { filterPlanet } = this.state;
     this.filter(filterPlanet);
@@ -103,6 +96,13 @@ export default class Home extends Component {
         const { error } = this.state;
         this.setState({ error: !error });
       });
+  };
+
+  componentDidUpdate = (nextProps, nextState) => {
+    const { filterPlanet } = this.state;
+    if (nextState.filterPlanet !== filterPlanet) {
+      this.filter(nextState.filterPlanet);
+    }
   };
 
   // table
@@ -183,11 +183,26 @@ export default class Home extends Component {
     const { chronology: { items } } = { ...this.state };
     const newElements = [];
     for (const index in items) {
-      newElements[index] = this.createTableItem(items[index].age, items[index].events, index);
+      if (items.hasOwnProperty(index)) {
+        newElements[index] = this.createTableItem(items[index].age, items[index].events, index);
+      } 
     }
     return newElements;
   };
 
+  /*createTable = () => {
+    const { chronology: { items } } = { ...this.state };
+    const newElements = [];
+    const keys = Object.keys(items);
+    const values = Object.values(items);
+    console.log(values);
+    console.log(keys);
+    for (let i = 0; i < keys.length; i += 1) {
+       newElements[i] = this.createTableItem(values[i].age, values[i].events, i);
+    }
+    console.log(newElements);
+    return newElements;
+  };*/
   /* createTable = () => {
     const { chronology: { items } } = { ...this.state };
     const newEl = Object.keys(items);
