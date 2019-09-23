@@ -19,9 +19,7 @@ const Button = ({
 Button.prototype = {
   text: PropTypes.string,
   className: PropTypes.string,
-  type: PropTypes.oneOfType(
-    PropTypes.string
-  ),
+  type: PropTypes.string,
   onClick: PropTypes.func
 };
 
