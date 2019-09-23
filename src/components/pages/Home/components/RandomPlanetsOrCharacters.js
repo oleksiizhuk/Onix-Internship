@@ -59,9 +59,9 @@ const RandomPlanetsOrCharacters = ({
 };
 
 RandomPlanetsOrCharacters.propTypes = {
-  planetButtons: PropTypes.arrayOf,
+  planetButtons: PropTypes.arrayOf(PropTypes.node),
   planetLoading: PropTypes.bool,
-  planetInfo: PropTypes.objectOf,
+  planetInfo: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
   planetFilter: PropTypes.string,
 };
 

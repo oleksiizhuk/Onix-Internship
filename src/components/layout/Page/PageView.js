@@ -1,11 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const pageView = (props) => {
+const PageView = ({ childrens }) => {
   return (
     <>
-      {props}
+      {childrens}
     </>
   );
 };
 
-export default pageView;
+
+PageView.propTypes = {
+  childrens: PropTypes.node
+};
+
+PageView.defaultProps = {
+  childrens: <h2>Hello world</h2>
+};
+
+export default PageView;

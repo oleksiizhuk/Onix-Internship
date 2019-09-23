@@ -24,7 +24,7 @@ const Hero = ({
 };
 
 Hero.propTypes = {
-  heroItems: PropTypes.objectOf,
+  heroItems: PropTypes.arrayOf(PropTypes.node),
   heroError: PropTypes.bool,
   loadingHero: PropTypes.bool
 };

@@ -5,7 +5,7 @@ import MyPhoto from '../../../../assets/images/my-photo.jpg';
 
 const About = (
   {
-    date: {
+    person: {
       name, surname, age, city, interests, hobby, job,
       social: {
         fb, twitter, gMail, github, linkedIn 
@@ -101,35 +101,17 @@ About me: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos officiis
 };
 
 About.propTypes = {
-  date: PropTypes.arrayOf,
-  name: PropTypes.string,
-  surname: PropTypes.string,
-  age: PropTypes.number,
-  city: PropTypes.string,
-  interests: PropTypes.string,
-  hobby: PropTypes.string,
-  job: PropTypes.string,
-  fb: PropTypes.string,
-  twitter: PropTypes.string,
-  gMail: PropTypes.string,
-  github: PropTypes.string,
-  linkedIn: PropTypes.string
+  person: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.objectOf(PropTypes.string)
+  ]))
 };
 
 About.defaultProps = {
-  date: [],
-  name: '',
-  surname: '',
-  age: 0,
-  city: '',
-  interests: '',
-  hobby: '',
-  job: '',
-  fb: '',
-  twitter: '',
-  gMail: '',
-  github: '',
-  linkedIn: ''
+  person: {
+    social: {}
+  }
 };
 
 export default About;

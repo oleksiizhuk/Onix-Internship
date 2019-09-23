@@ -182,38 +182,13 @@ export default class Home extends Component {
   createTable = () => {
     const { chronology: { items } } = { ...this.state };
     const newElements = [];
-    for (const index in items) {
-      if (items.hasOwnProperty(index)) {
+    Object.keys(items).forEach((index) => {
+      if (Object.prototype.hasOwnProperty.call(items, index)) {
         newElements[index] = this.createTableItem(items[index].age, items[index].events, index);
       } 
-    }
+    });
     return newElements;
   };
-
-  /*createTable = () => {
-    const { chronology: { items } } = { ...this.state };
-    const newElements = [];
-    const keys = Object.keys(items);
-    const values = Object.values(items);
-    console.log(values);
-    console.log(keys);
-    for (let i = 0; i < keys.length; i += 1) {
-       newElements[i] = this.createTableItem(values[i].age, values[i].events, i);
-    }
-    console.log(newElements);
-    return newElements;
-  };*/
-  /* createTable = () => {
-    const { chronology: { items } } = { ...this.state };
-    const newEl = Object.keys(items);
-    const newElements = newEl
-      .map((item, index) => {
-        console.log(items[index].age);
-        console.log(items);
-        return this.createTableItem(items[index].age, items[index].events, index.toString());
-      });
-    return newElements;
-  }; */
 
   createTableItem = (age, text, index) => {
     return (
@@ -285,12 +260,18 @@ export default class Home extends Component {
     const { heroes } = { ...this.state };
     const { activeElement } = this.state;
     const items = heroes.map((item, index) => {
+      const {
+        id, name, ell1, ell2, ell3 
+      } = item;
       return (
-        <li
+        <div
           className={`draggable__item__li ${activeElement === index ? 'drag__active' : ''}`}
           key={item.id}
           onDragOver={() => this.onDragOver(index)}
           onClick={(e) => this.handleClick(e, index)}
+          onKeyPress={(e) => this.handleClick(e, index)} // esLint
+          role="button"
+          tabIndex="0"
         >
           <div
             className="drag"
@@ -298,10 +279,14 @@ export default class Home extends Component {
             onDragStart={(e) => this.onDragStart(e, index)}
           >
             <HeroItems
-              item={item}
+              id={id}
+              name={name}
+              ell1={ell1}
+              ell2={ell2}
+              ell3={ell3}
             />
           </div>
-        </li>
+        </div>
       );
     });
     return (items);
@@ -408,7 +393,7 @@ export default class Home extends Component {
       error
     } = this.state;
     const tableItems = this.createTable();
-    const buttons = this.createButtons();
+    const planetButtons = this.createButtons();
 
     const itemsHero = (loadingHero || !error) ? this.heroItem() : null;
     if (hasError) {
@@ -416,7 +401,7 @@ export default class Home extends Component {
     }
     return (
       <HomeView
-        date={person}
+        person={person}
 
         tableItems={tableItems}
         tableLabel={tableLabel}
@@ -427,7 +412,7 @@ export default class Home extends Component {
         onTableYearChange={this.onYearChange}
         onTableSubmit={this.onSubmit}
 
-        planetButtons={buttons}
+        planetButtons={planetButtons}
         planetLoading={loading}
         planetInfo={infoPlanet}
         planetFilter={filterPlanet}

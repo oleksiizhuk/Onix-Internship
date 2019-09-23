@@ -34,7 +34,7 @@ Input.defaultProps = {
   placeholder: '',
   min: '',
   max: '',
-  onChange: () => {}
+  onChange: undefined
 };
 
 export default Input;

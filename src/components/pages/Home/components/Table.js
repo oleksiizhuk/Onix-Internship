@@ -50,10 +50,9 @@ const Table = ({
 export default Table;
 
 Table.propTypes = {
-  tableItems: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  tableItems: PropTypes.arrayOf(
+    PropTypes.node
+  ),
   tableLabel: PropTypes.string,
   tableYear: PropTypes.string,
   onSortTable: PropTypes.func,
@@ -66,12 +65,8 @@ Table.defaultProps = {
   tableItems: [],
   tableLabel: '',
   tableYear: '',
-  onSortTable: () => {
-  },
-  onTableLabelChange: () => {
-  },
-  onTableYearChange: () => {
-  },
-  onTableSubmit: () => {
-  }
+  onSortTable: undefined,
+  onTableLabelChange: undefined,
+  onTableYearChange: undefined,
+  onTableSubmit: undefined
 };

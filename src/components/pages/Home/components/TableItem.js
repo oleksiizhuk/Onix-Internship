@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TableItem = ({ age, text, onDeleteItem }) => {
+const TableItem = ({
+  age, text, onDeleteItem
+}) => {
   return (
     <span className="section-4__item-block">
       <span className="section-4__item-age">{age}</span>
@@ -27,7 +29,7 @@ TableItem.propTypes = {
 TableItem.defaultProps = {
   age: '',
   text: '',
-  onDeleteItem: () => {},
+  onDeleteItem: undefined,
 };
 
 export default TableItem;

@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import '../../../../scss/pages/home/component/heroItem.scss';
 
 const HeroItem = ({
-  item: {
-    id, name, ell1, ell2, ell3
-  }
+  id, name, ell1, ell2, ell3
 }) => {
   return (
     <>
@@ -33,17 +31,15 @@ eye:
 };
 
 HeroItem.propTypes = {
-  item: PropTypes.objectOf,
-  id: PropTypes.number,
+  id: PropTypes.string,
   name: PropTypes.string,
   ell1: PropTypes.string,
   ell2: PropTypes.string,
-  ell3: PropTypes.string,
+  ell3: PropTypes.string
 };
 
 HeroItem.defaultProps = {
-  item: {},
-  id: 0,
+  id: '0',
   name: '',
   ell1: '',
   ell2: '',

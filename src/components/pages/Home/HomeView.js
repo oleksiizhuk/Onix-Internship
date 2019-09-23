@@ -9,7 +9,7 @@ import Hero from './components/Hero';
 
 const HomeView = (
   {
-    date, tableItems, tableLabel, tableYear, onTableLabelChange, onTableYearChange, onTableSubmit, onSortTable,
+    person, tableItems, tableLabel, tableYear, onTableLabelChange, onTableYearChange, onTableSubmit, onSortTable,
     planetButtons, planetLoading, planetInfo, planetFilter,
     heroItems, heroError, loadingHero
   }
@@ -17,7 +17,7 @@ const HomeView = (
   return (
     <>
       <Portfolio />
-      <About date={date} />
+      <About person={person} />
       <Table
         tableItems={tableItems}
         tableLabel={tableLabel}
@@ -44,8 +44,14 @@ const HomeView = (
 };
 
 HomeView.propTypes = {
-  date: PropTypes.objectOf,
-  tableItems: PropTypes.arrayOf,
+  person: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.objectOf(PropTypes.string)
+  ])),
+  tableItems: PropTypes.arrayOf(
+    PropTypes.node
+  ),
   tableLabel: PropTypes.string,
   tableYear: PropTypes.string,
   onSortTable: PropTypes.func,
@@ -53,25 +59,27 @@ HomeView.propTypes = {
   onTableYearChange: PropTypes.func,
   onTableSubmit: PropTypes.func,
 
-  planetButtons: PropTypes.arrayOf,
+  planetButtons: PropTypes.arrayOf(PropTypes.node),
   planetLoading: PropTypes.bool,
-  planetInfo: PropTypes.objectOf,
+  planetInfo: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
   planetFilter: PropTypes.string,
 
-  heroItems: PropTypes.arrayOf,
+  heroItems: PropTypes.arrayOf(PropTypes.node),
   heroError: PropTypes.bool,
   loadingHero: PropTypes.bool
 };
 
 HomeView.defaultProps = {
-  date: {},
+  person: {
+    socials: {}
+  },
   tableItems: [],
   tableLabel: '',
   tableYear: '',
-  onSortTable: () => {},
-  onTableLabelChange: () => {},
-  onTableYearChange: () => {},
-  onTableSubmit: () => {},
+  onSortTable: undefined,
+  onTableLabelChange: undefined,
+  onTableYearChange: undefined,
+  onTableSubmit: undefined,
 
   planetButtons: [],
   planetLoading: false,
