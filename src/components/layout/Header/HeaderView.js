@@ -58,17 +58,24 @@ const HeaderView = ({
           </ul>
         </nav>
       </div>
+      {showScrollToTop
+        ? (
+          <ReturnArrow
+            scrollToTop={scrollToTop}
+          />
+        ) : null}
 
-      <ReturnArrow
-        scrollToTop={scrollToTop}
-      />
     </header>
   );
 };
 
 HeaderView.propTypes = {
   scrollToTop: PropTypes.func,
-  showScrollToTop: PropTypes.bool
+  showScrollToTop: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool
+  ]),
 };
 
 HeaderView.defaultProps = {
