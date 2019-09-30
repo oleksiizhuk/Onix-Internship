@@ -23,7 +23,11 @@ Input.propTypes = {
   value: PropTypes.string,
   placeholder: PropTypes.string,
   min: PropTypes.string,
-  max: PropTypes.string,
+  max: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.object
+  ]),
   onChange: PropTypes.func
 };
 

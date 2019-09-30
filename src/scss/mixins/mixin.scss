@@ -97,3 +97,11 @@
   transform-origin: ($value);
 }
 
+@mixin transition($sec) {
+  -webkit-transition: all $sec linear;
+  -moz-transition: all $sec ease;
+  -ms-transition: all $sec ease;
+  -o-transition: all $sec ease;
+  transition: all $sec ease;
+}
+

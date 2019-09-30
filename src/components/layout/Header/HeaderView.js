@@ -1,8 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-scroll';
 import Logo from '../../../assets/images/logo.png';
+import ReturnArrow from '../../pages/Home/components/ReturnArrow';
 
-const header = () => {
+
+const HeaderView = ({
+  scrollToTop, showScrollToTop
+}) => {
   return (
     <header className="header">
       <div className="container">
@@ -53,8 +58,23 @@ const header = () => {
           </ul>
         </nav>
       </div>
+
+      <ReturnArrow
+        scrollToTop={scrollToTop}
+      />
     </header>
   );
 };
 
-export default header;
+HeaderView.propTypes = {
+  scrollToTop: PropTypes.func,
+  showScrollToTop: PropTypes.bool
+};
+
+HeaderView.defaultProps = {
+  scrollToTop: undefined,
+  showScrollToTop: false
+
+};
+
+export default HeaderView;

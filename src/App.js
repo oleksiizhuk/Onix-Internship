@@ -16,7 +16,7 @@ class App extends Component {
       <Router history={this.history}>
         <Page>
           <Switch>
-            <Route path="*" component={Home} />
+            <Route path="/" component={Home} />
           </Switch>
         </Page>
       </Router>
