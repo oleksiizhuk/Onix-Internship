@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-scroll';
 import Logo from '../../../assets/images/logo.png';
-import ReturnArrow from '../../pages/Home/components/ReturnArrow';
+import ReturnArrow from './components/ReturnArrow';
 
 
 const HeaderView = ({
@@ -81,7 +81,6 @@ HeaderView.propTypes = {
 HeaderView.defaultProps = {
   scrollToTop: undefined,
   showScrollToTop: false
-
 };
 
 export default HeaderView;

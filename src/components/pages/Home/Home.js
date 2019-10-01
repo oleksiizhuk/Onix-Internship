@@ -7,7 +7,6 @@ import HeroItems from './components/HeroItem';
 export default class Home extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       person: {
         id: 1,

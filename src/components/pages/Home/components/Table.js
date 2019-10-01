@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Button from '../../../Elements/Button/Button';
 import Input from '../../../Elements/Input/Input';
 
-
 const Table = ({
   onSortTable, tableItems, onTableLabelChange, onTableYearChange, onTableSubmit, tableLabel, tableYear
 }) => {

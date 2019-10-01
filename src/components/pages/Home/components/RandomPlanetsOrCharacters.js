@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Spinner from './Spinner';
 import '../../../../scss/pages/home/component/randomPlanetsOrCharacters.scss';
 
-
 const RandomPlanetsOrCharacters = ({
   planetButtons, planetLoading, planetInfo, planetFilter 
 }) => {
