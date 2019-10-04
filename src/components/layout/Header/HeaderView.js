@@ -4,7 +4,6 @@ import { Link } from 'react-scroll';
 import Logo from '../../../assets/images/logo.png';
 import ReturnArrow from './components/ReturnArrow';
 
-
 const HeaderView = ({
   scrollToTop, showScrollToTop
 }) => {

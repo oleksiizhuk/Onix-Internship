@@ -31,26 +31,22 @@ const GetInTouch = () => {
           <div className="section-3__feedback__contact_info">
             <p className="section-3__feedback__contact_info__text">
               <span>Quisque Hendrerit:</span>
-              {' '}
-purus
                             dapi- bus,
                             ornare nibh vitae,
                             viverra nibh. Fusce vitae aliquam tellus. Proin sit amet volutpat libero. Nulla sed nunc et
                             tortor
-                            luctus faucibus morbi vitae. 
+                            luctus faucibus morbi vitae.
             </p>
             <p className="section-3__feedback__contact_info__contact">
               <i className="fas fa-map-marker-alt" />
               <span>Elm St. 14/05 Lost City</span>
             </p>
             <p className="section-3__feedback__contact_info__contact">
-              <i className="fas fa-phone" /> 
-              {' '}
+              <i className="fas fa-phone" />
               <span>+ 3528 331 86 35</span>
             </p>
             <p className="section-3__feedback__contact_info__contact">
-              <i className="fas fa-envelope" /> 
-              {' '}
+              <i className="fas fa-envelope" />
               <span>info@hexalcorp.com</span>
             </p>
           </div>

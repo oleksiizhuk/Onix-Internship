@@ -98,18 +98,41 @@ About me: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos officiis
     </div>
   );
 };
-
 About.propTypes = {
-  person: PropTypes.objectOf(PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.objectOf(PropTypes.string)
-  ]))
+  person: PropTypes.shape({
+    name: PropTypes.string,
+    surname: PropTypes.string,
+    age: PropTypes.number,
+    city: PropTypes.string,
+    interests: PropTypes.string,
+    hobby: PropTypes.string,
+    job: PropTypes.string,
+    social: PropTypes.shape({
+      fb: PropTypes.string,
+      twitter: PropTypes.string,
+      gMail: PropTypes.string,
+      github: PropTypes.string,
+      linkedIn: PropTypes.string,
+    })
+  })
 };
 
 About.defaultProps = {
   person: {
-    social: {}
+    name: '',
+    surname: '',
+    age: 0,
+    city: '',
+    interests: '',
+    hobby: '',
+    job: '',
+    social: {
+      fb: '',
+      twitter: '',
+      gMail: '',
+      github: '',
+      linkedIn: '',
+    }
   }
 };
 

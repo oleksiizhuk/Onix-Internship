@@ -11,7 +11,7 @@ const ReturnArrow = ({
       className="return-to-top"
       type="button"
     >
-      <i className="icon-chevron-up" />
+      <i className="fas fa-arrow-up" />
     </button>
   );
 };
