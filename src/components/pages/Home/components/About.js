@@ -102,7 +102,7 @@ About.propTypes = {
   person: PropTypes.shape({
     name: PropTypes.string,
     surname: PropTypes.string,
-    age: PropTypes.number,
+    age: PropTypes.string,
     city: PropTypes.string,
     interests: PropTypes.string,
     hobby: PropTypes.string,
