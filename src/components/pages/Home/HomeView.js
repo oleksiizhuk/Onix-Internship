@@ -5,9 +5,9 @@ import About from './components/About';
 import GetInTouch from './components/GetInTouch';
 import Table from './components/Table';
 import RandomPlanetsOrCharacters from './components/RandomPlanetsOrCharacters';
-import Test from './components/test';
 import Hero from './components/Hero';
-import WithComponent from './components/WithComponent';
+import Test from './components/test';
+import WithTest from './components/withData';
 
 const HomeView = (
   {
@@ -16,15 +16,7 @@ const HomeView = (
     heroItems, heroError, loadingHero
   }
 ) => {
-  const component = WithComponent(
-    <Test
-      planetButtons={planetButtons}
-      planetLoading={planetLoading}
-      planetInfo={planetInfo}
-      planetFilter={planetFilter}
-    />,    
-    planetButtons, planetLoading
-  );
+
   return (
     <>
       <Portfolio />
@@ -44,8 +36,8 @@ const HomeView = (
         planetInfo={planetInfo}
         planetFilter={planetFilter}
       />
-      {component}
-
+      <PersonList />
+      <PlanetList />
       <Hero
         heroItems={heroItems}
         heroError={heroError}

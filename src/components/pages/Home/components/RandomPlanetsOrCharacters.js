@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Spinner from './Spinner';
 import '../../../../scss/pages/home/component/randomPlanetsOrCharacters.scss';
+import withData from "./withData";
 
 const RandomPlanetsOrCharacters = ({
   planetButtons, planetLoading, planetInfo, planetFilter 
@@ -70,4 +71,5 @@ RandomPlanetsOrCharacters.defaultProps = {
   planetInfo: {},
   planetFilter: '',
 };
-export default RandomPlanetsOrCharacters;
+
+export default withData(RandomPlanetsOrCharacters);
