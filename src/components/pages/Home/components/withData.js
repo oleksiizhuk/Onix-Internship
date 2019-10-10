@@ -6,10 +6,11 @@ const withData = (View) => {
   return class extends Component {
     render() {
       // eslint-disable-next-line no-console
-      console.log(View);
+      console.log(this.props);
       const planetButtons = false;
-      const planetLoading = false;
+      const planetLoading = true;
       if (!planetLoading) {
+        console.log('test')
         return (
           <div className="section-5">
             <div className="container">
@@ -23,12 +24,15 @@ const withData = (View) => {
           </div>
         );
       }
+
       return (
         <div className="section-5">
           <div className="container">
             <div className="button-block">
               {planetButtons}
             </div>
+            {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+            {console.log('test')}
             <View {...this.props} planetLoading />
           </div>
         </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Spinner from './Spinner';
 import '../../../../scss/pages/home/component/randomPlanetsOrCharacters.scss';
+import withData from './withData';
 
 const test = ({
   planetLoading, planetInfo, planetFilter
@@ -9,7 +10,7 @@ const test = ({
   return (
     <div className="random-planet jumbotron rounded">
 
-      {planetLoading ? <Spinner />
+      {!planetLoading ? <Spinner />
         : (
           <img
             className="planet-image"
@@ -49,4 +50,4 @@ test.defaultProps = {
   planetInfo: {},
   planetFilter: '',
 };
-export default test;
+export default withData(test);
