@@ -56,7 +56,7 @@ export default class Home extends Component {
         ell2: null,
         ell3: null
       },
-      filterPlanet: 'planets',
+      userChoice: 'planets',
       loading: true,
 
       heroes: [],
@@ -81,8 +81,8 @@ export default class Home extends Component {
   }
 
   componentDidMount = () => {
-    const { filterPlanet } = this.state;
-    this.filter(filterPlanet);
+    const { userChoice } = this.state;
+    this.filter(userChoice);
 
     this.getAllPeople()
       .then((heroes) => {
@@ -98,9 +98,9 @@ export default class Home extends Component {
   };
 
   componentDidUpdate = (nextProps, nextState) => {
-    const { filterPlanet } = this.state;
-    if (nextState.filterPlanet !== filterPlanet) {
-      this.filter(nextState.filterPlanet);
+    const { userChoice } = this.state;
+    if (nextState.userChoice !== userChoice) {
+      this.filter(nextState.userChoice);
     }
   };
 
@@ -204,9 +204,9 @@ export default class Home extends Component {
 
   // Planet ***
   createButtons = () => {
-    const { filterPlanet, planetButtons } = this.state;
+    const { userChoice, planetButtons } = this.state;
     return planetButtons.map(({ name, label }) => {
-      const isActive = filterPlanet === name;
+      const isActive = userChoice === name;
       const clazz = isActive ? 'active-button' : 'btn-outline-secondary';
       return (
         <button
@@ -221,8 +221,8 @@ export default class Home extends Component {
     });
   };
 
-  onFilterChange = (filterPlanet) => {
-    this.setState({ filterPlanet });
+  onFilterChange = (userChoice) => {
+    this.setState({ userChoice });
   };
 
   generationRandomId = () => Math.floor(Math.random() * 10 + 2);
@@ -243,11 +243,11 @@ export default class Home extends Component {
     );
   };
 
-  filter = (filterPlanet) => {
+  filter = (userChoice) => {
     this.onLoadingFalse();
-    if (filterPlanet === 'planets') {
+    if (userChoice === 'planets') {
       this.getItem(this.getPlanet);
-    } else if (filterPlanet === 'characters') {
+    } else if (userChoice === 'characters') {
       this.getItem(this.getPerson);
     }
   };
@@ -387,7 +387,7 @@ export default class Home extends Component {
       tableYear,
       loading,
       infoPlanet,
-      filterPlanet,
+      userChoice,
       loadingHero,
       error
     } = this.state;
@@ -414,7 +414,7 @@ export default class Home extends Component {
         planetButtons={planetButtons}
         planetLoading={loading}
         planetInfo={infoPlanet}
-        planetFilter={filterPlanet}
+        userChoice={userChoice}
 
         heroItems={itemsHero}
         heroError={error}

@@ -4,7 +4,7 @@ import Spinner from './Spinner';
 import '../../../../scss/pages/home/component/randomPlanetsOrCharacters.scss';
 
 const RandomPlanetsOrCharacters = ({
-  planetButtons, planetLoading, planetInfo, planetFilter 
+  planetButtons, planetLoading, planetInfo, userChoice
 }) => {
   if (planetLoading) {
     return (
@@ -31,7 +31,7 @@ const RandomPlanetsOrCharacters = ({
               <img
                 className="planet-image"
                 alt="test"
-                src={`https://starwars-visualguide.com/assets/img/${planetFilter}/${planetInfo.id}.jpg`}
+                src={`https://starwars-visualguide.com/assets/img/${userChoice}/${planetInfo.id}.jpg`}
               />
             )}
           <div>
@@ -61,14 +61,14 @@ RandomPlanetsOrCharacters.propTypes = {
   planetButtons: PropTypes.arrayOf(PropTypes.node),
   planetLoading: PropTypes.bool,
   planetInfo: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
-  planetFilter: PropTypes.string,
+  userChoice: PropTypes.string
 };
 
 RandomPlanetsOrCharacters.defaultProps = {
   planetButtons: [],
   planetLoading: true,
   planetInfo: {},
-  planetFilter: '',
+  userChoice: ''
 };
 
 export default RandomPlanetsOrCharacters;

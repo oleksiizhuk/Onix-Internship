@@ -7,12 +7,12 @@ import Table from './components/Table';
 import RandomPlanetsOrCharacters from './components/RandomPlanetsOrCharacters';
 import Hero from './components/Hero';
 
-import Test from './components/test';
+import ChoicePlanetOrPerson from './components/ChoicePlanetOrPerson';
 
 const HomeView = (
   {
     person, tableItems, tableLabel, tableYear, onTableLabelChange, onTableYearChange, onTableSubmit, onSortTable,
-    planetButtons, planetLoading, planetInfo, planetFilter,
+    planetButtons, planetLoading, planetInfo, userChoice,
     heroItems, heroError, loadingHero
   }
 ) => {
@@ -33,9 +33,12 @@ const HomeView = (
         planetButtons={planetButtons}
         planetLoading={planetLoading}
         planetInfo={planetInfo}
-        planetFilter={planetFilter}
+        userChoice={userChoice}
       />
-      <Test />
+      <ChoicePlanetOrPerson
+        planetButtons={planetButtons}
+        userChoice={userChoice}
+      />
       <Hero
         heroItems={heroItems}
         heroError={heroError}
@@ -65,7 +68,7 @@ HomeView.propTypes = {
   planetButtons: PropTypes.arrayOf(PropTypes.node),
   planetLoading: PropTypes.bool,
   planetInfo: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
-  planetFilter: PropTypes.string,
+  userChoice: PropTypes.string,
 
   heroItems: PropTypes.arrayOf(PropTypes.node),
   heroError: PropTypes.bool,
@@ -87,7 +90,7 @@ HomeView.defaultProps = {
   planetButtons: [],
   planetLoading: false,
   planetInfo: {},
-  planetFilter: '',
+  userChoice: '',
 
   heroItems: [],
   heroError: false,
