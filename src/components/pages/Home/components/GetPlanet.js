@@ -8,7 +8,6 @@ const getPlanet = (props) => {
   const {
     info, labelName, userChoice,
   } = props;
-  console.log(props);
   return (
     <div className="random-planet jumbotron rounded">
       <img

@@ -6,24 +6,17 @@ const withData = (View) => {
   return class extends Component {
     constructor(props) {
       super(props);
-      const { userChoice } = this.props;
       this.state = {
         info: null,
         loading: false,
-        userChoice,
+        userChoice: 'planets',
         planetLabel: ['id', 'name', 'Population', 'Rotation Period', 'Diameter'],
         personLabel: ['id', 'name', 'Gender', 'birth', 'eye'],
       };
     }
 
     componentDidMount() {
-      const { userChoice } = this.state;
-      this.getInfo(userChoice, 2)
-        .then((info) => {
-          this.setState({
-            info
-          });
-        });
+      this.query();
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -31,13 +24,31 @@ const withData = (View) => {
       if (prevState.info !== info) {
         this.loading();
       }
+      if (prevProps.userChoice !== this.props.userChoice) {
+        this.query();
+      }
     }
+
+    query = () => {
+      const { userChoice } = this.props;
+      if ('characters' == this.props) {
+        console.log('tessdfsdfsdfsdf')
+      }
+      this.getInfo(userChoice, 2)
+        .then((info) => {
+          this.setState({
+            info
+          });
+        });
+    };
 
     getInfo = async (url, id) => {
       const apiBase = process.env.REACT_APP_API_BASE;
+      console.log(`${apiBase}/${url}/${id}/`)
       const res = await fetch(`${apiBase}/${url}/${id}/`);
       const transformResult = await res.json();
       const { userChoice } = this.state;
+      console.log(transformResult);
       return userChoice === 'planets' ? this.transformPlanet(transformResult) : this.transformPerson(transformResult);
     };
 
@@ -72,13 +83,13 @@ const withData = (View) => {
       };
     }
 
+
     render() {
       const {
-        info, userChoice, planetLabel, personLabel 
+        info, userChoice, planetLabel, personLabel
       } = this.state;
       const labelName = userChoice === 'planets' ? planetLabel : personLabel;
-      console.log(labelName);
-      console.log(userChoice);
+      console.log(info)
       if (!info) {
         return <Spinner />;
       }

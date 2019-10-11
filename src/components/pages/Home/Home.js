@@ -222,7 +222,7 @@ export default class Home extends Component {
   };
 
   onFilterChange = (userChoice) => {
-    this.setState({ userChoice });
+    this.setState({ userChoice, });
   };
 
   generationRandomId = () => Math.floor(Math.random() * 10 + 2);
