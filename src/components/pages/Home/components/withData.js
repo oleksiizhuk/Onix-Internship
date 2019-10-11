@@ -7,9 +7,8 @@ const withData = (View) => {
     constructor(props) {
       super(props);
       this.state = {
-        info: null,
+        info: {},
         loading: false,
-        userChoice: 'planets',
         planetLabel: ['id', 'name', 'Population', 'Rotation Period', 'Diameter'],
         personLabel: ['id', 'name', 'Gender', 'birth', 'eye'],
       };
@@ -21,20 +20,20 @@ const withData = (View) => {
 
     componentDidUpdate(prevProps, prevState) {
       const { info } = this.state;
+      const { userChoice } = this.props;
       if (prevState.info !== info) {
         this.loading();
       }
-      if (prevProps.userChoice !== this.props.userChoice) {
+      const prevPropsUserChoice = prevProps.userChoice;
+      if (prevPropsUserChoice !== userChoice) {
         this.query();
       }
     }
 
     query = () => {
       const { userChoice } = this.props;
-      if ('characters' == this.props) {
-        console.log('tessdfsdfsdfsdf')
-      }
-      this.getInfo(userChoice, 2)
+      const query = userChoice === 'planets' ? 'planets' : 'people';
+      this.getInfo(query, 2)
         .then((info) => {
           this.setState({
             info
@@ -43,12 +42,10 @@ const withData = (View) => {
     };
 
     getInfo = async (url, id) => {
+      const { userChoice } = this.props;
       const apiBase = process.env.REACT_APP_API_BASE;
-      console.log(`${apiBase}/${url}/${id}/`)
       const res = await fetch(`${apiBase}/${url}/${id}/`);
       const transformResult = await res.json();
-      const { userChoice } = this.state;
-      console.log(transformResult);
       return userChoice === 'planets' ? this.transformPlanet(transformResult) : this.transformPerson(transformResult);
     };
 
@@ -86,14 +83,13 @@ const withData = (View) => {
 
     render() {
       const {
-        info, userChoice, planetLabel, personLabel
+        info, planetLabel, personLabel
       } = this.state;
+      const { userChoice } = this.props;
       const labelName = userChoice === 'planets' ? planetLabel : personLabel;
-      console.log(info)
       if (!info) {
         return <Spinner />;
       }
-
       return (
         // eslint-disable-next-line react/jsx-props-no-spreading
         <View {...this.props} info={info} labelName={labelName} />
@@ -103,7 +99,7 @@ const withData = (View) => {
 };
 
 withData.propTypes = {
-  planetButtons: PropTypes.objectOf(PropTypes.node).isRequired,
+  planetButtons: PropTypes.objectOf(PropTypes.node),
   userChoice: PropTypes.string
 };
 

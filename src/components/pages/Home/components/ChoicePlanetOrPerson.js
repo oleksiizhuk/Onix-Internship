@@ -20,7 +20,7 @@ const ChoicePlanetOrPerson = (
 };
 
 ChoicePlanetOrPerson.propTypes = {
-  planetButtons: PropTypes.objectOf(PropTypes.array),
+  planetButtons: PropTypes.arrayOf(PropTypes.node),
   userChoice: PropTypes.string
 };
 
