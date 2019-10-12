@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Spinner from './Spinner';
+import Spinner from '../components/pages/Home/components/Spinner';
 
-const withData = (View) => {
+const WithData = (View, userChoice) => {
   return class extends Component {
     constructor(props) {
       super(props);
       this.state = {
         info: {},
+        userChoice,
         loading: false,
         planetLabel: ['id', 'name', 'Population', 'Rotation Period', 'Diameter'],
         personLabel: ['id', 'name', 'Gender', 'birth', 'eye'],
@@ -20,20 +20,13 @@ const withData = (View) => {
 
     componentDidUpdate(prevProps, prevState) {
       const { info } = this.state;
-      const { userChoice } = this.props;
       if (prevState.info !== info) {
         this.loading();
-      }
-      const prevPropsUserChoice = prevProps.userChoice;
-      if (prevPropsUserChoice !== userChoice) {
-        this.query();
       }
     }
 
     query = () => {
-      const { userChoice } = this.props;
-      const query = userChoice === 'planets' ? 'planets' : 'people';
-      this.getInfo(query, 2)
+      this.getInfo(userChoice, 2)
         .then((info) => {
           this.setState({
             info
@@ -42,7 +35,6 @@ const withData = (View) => {
     };
 
     getInfo = async (url, id) => {
-      const { userChoice } = this.props;
       const apiBase = process.env.REACT_APP_API_BASE;
       const res = await fetch(`${apiBase}/${url}/${id}/`);
       const transformResult = await res.json();
@@ -80,14 +72,12 @@ const withData = (View) => {
       };
     }
 
-
     render() {
       const {
-        info, planetLabel, personLabel
+        info, planetLabel, personLabel, loading
       } = this.state;
-      const { userChoice } = this.props;
       const labelName = userChoice === 'planets' ? planetLabel : personLabel;
-      if (!info) {
+      if (!loading) {
         return <Spinner />;
       }
       return (
@@ -98,14 +88,4 @@ const withData = (View) => {
   };
 };
 
-withData.propTypes = {
-  planetButtons: PropTypes.objectOf(PropTypes.node),
-  userChoice: PropTypes.string
-};
-
-withData.defaultProps = {
-  planetButtons: [],
-  userChoice: ''
-};
-
-export default withData;
+export default WithData;

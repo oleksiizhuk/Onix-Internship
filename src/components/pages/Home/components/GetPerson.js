@@ -18,7 +18,7 @@ const getPlanet = (props) => {
       <div>
         <h4>
           {labelName[1]}
-: 
+          :
           {' '}
           {info.name}
         </h4>
@@ -58,4 +58,4 @@ getPlanet.defaultProps = {
   labelName: []
 };
 
-export default withData(getPlanet, 'planets');
+export default withData(getPlanet, 'people');
