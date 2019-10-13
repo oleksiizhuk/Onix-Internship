@@ -1,0 +1,98 @@
+@import "../../../mixins/mixin";
+
+.section-1.light {
+  background-color: #fff;
+}
+
+.section-1.dark {
+  background-color: #cacaca;
+}
+
+.container-portfolio {
+  max-width: 980px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.portfolio {
+  @include display-flex();
+  @include flex-wrap(wrap);
+  padding: 90px 0;
+
+  @media only screen and (max-width: 768px) {
+    padding: 0;
+  }
+}
+
+.portfolio__item {
+  @include flex(0 0 20%);
+
+  &:nth-child(0n + 6),
+  &:nth-child(0n + 15) {
+    margin-left: 10%;
+  }
+
+  @media only screen and (max-width: 992px) {
+    @include flex(0 0 33%);
+    @include display-flex();
+    @include justify-content(center);
+
+    &:nth-child(0n+6), &:nth-child(0n+15) {
+      margin-left: 0
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    @include flex(0 0 33%);
+    @include display-flex();
+    @include justify-content(center);
+
+    &:nth-child(0n+6),
+    &:nth-child(0n+15) {
+      margin-left: 0
+    }
+  }
+
+  @media only screen and (max-width: 568px) {
+    .portfolio__item {
+      @include flex(0 0 50%);
+      @include display-flex();
+      @include justify-content(center);
+    }
+  }
+}
+
+.portfolio__item__art {
+  background-color: #4f9ea0;
+  color: #ffffff;
+  width: 180px;
+  height: 200px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  text-align: center;
+  @include display-flex();
+  align-items: center;
+
+  &:hover {
+    transition: 0.5s;
+    @include transform-scale (1.1);
+  }
+
+  @media only screen and (max-width: 768px) {
+    width: 125px;
+    height: 150px;
+  }
+}
+
+.portfolio__item__art img {
+  width: 180px;
+  height: 200px;
+  position: absolute;
+  transition: 0.75s;
+  @include transform-origin (0 50%);
+  @media only screen and (max-width: 768px) {
+    width: 125px;
+    height: 150px;
+  }
+}

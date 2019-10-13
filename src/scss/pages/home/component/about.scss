@@ -1,0 +1,113 @@
+@import "../../../mixins/mixin";
+
+.section-2{
+  background-color: #2eb398;
+  @include display-flex();
+}
+
+.section-2.light{
+  background-color: #2eb398;
+}
+.section-2.dark{
+  background-color: #000000;
+}
+
+.about {
+  @include display-flex();
+  padding: 70px 0;
+  @media only screen and (max-width: 768px) {
+    @include flex-wrap(wrap);
+    padding: 0
+  }
+
+}
+
+.about__photo {
+  @include flex(0 0 20%);
+  padding: 0 20px;
+  @media only screen and (max-width: 768px) {
+    margin: 0 auto
+  }
+}
+
+.about__info {
+  @media only screen and (max-width: 768px) {
+    text-align: center
+  }
+}
+
+.about__photo__article {
+  background-color: #4f9ea0;
+  color: #ffffff;
+  width: 180px;
+  height: 200px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  text-align: center;
+  @include display-flex();
+  align-items: center;
+}
+
+.about__photo__article figure {
+  padding: 0 0.5em;
+}
+
+.about__photo__article img {
+  width: 180px;
+  height: 200px;
+  position: absolute;
+  transition: 0.75s;
+  @include transform-origin (0 50%);
+
+  &:hover {
+    transform: translate (6%, -6%) rotate(- 140 deg);
+  }
+}
+
+.about__info__text h2 {
+  padding: 0;
+  margin: 0;
+  font-size: 30px;
+  color: #d7fcf5;
+  font-family: MavenProRegular, sans-serif;
+}
+
+.about__info__text span {
+  color: #20816d;
+  font-size: 18px;
+  font-family: MavenProRegular, sans-serif;
+}
+
+.about__info__text p {
+  font-size: 12px;
+  color: #d7fcf5;
+  font-family: Lato-Regular, sans-serif;
+}
+
+.about__info__social {
+  @include display-flex();
+  @include justify-content(flex-end);
+  padding-top: 5%;
+  @media only screen and (max-width: 768px) {
+    @include justify-content(center);
+  }
+}
+
+.about__info__social__item {
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 28px;
+  background-color: #a4dbd4;
+
+  &:nth-child(even) {
+    background-color: #6ccbbe;
+  }
+
+  &:hover {
+    background-color: #8198ff;
+  }
+}
+
+.about__info__social__item a {
+  color: black;
+}
