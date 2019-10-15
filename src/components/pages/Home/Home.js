@@ -104,7 +104,6 @@ export default class Home extends Component {
     }
   };
 
-  // table
   createTableObject = (year, text, index) => {
     return {
       [index]: {
