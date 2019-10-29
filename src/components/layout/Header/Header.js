@@ -1,80 +1,58 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import HeaderView from './HeaderView';
+import HeaderView from './HeadeView';
 
-export default class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showScrollToTop: null,
+const Header = (props) => {
+  const [showScrollButton, setShowScrollButton] = useState(false);
+
+  function checkForScrollToTop() {
+    const { distance } = props;
+    const showButton = !!((document.body.scrollTop > distance || document.documentElement.scrollTop > distance));
+    setShowScrollButton(showButton);
+  }
+
+  useEffect(() => {
+    checkForScrollToTop();
+    window.addEventListener('scroll', checkForScrollToTop);
+    return () => {
+      window.removeEventListener('scroll', checkForScrollToTop);
     };
-  }
+  });
 
-  componentDidMount() {
-    this.checkForScrollToTop();
-    window.addEventListener('scroll', this.checkForScrollToTop);
-  }
-
-  componentWillUnmount() {
-    window.addEventListener('scroll', this.checkForScrollToTop);
-  }
-
-  setScrollTop(value) {
+  function setScrollTop(value) {
     document.body.scrollTop = value;
     if (document.documentElement) {
       document.documentElement.scrollTop = value;
     }
   }
 
-  getScrollTop = () => {
+  function getScrollTop() {
     return (
       document.body.scrollTop
       || ((document.documentElement && document.documentElement.scrollTop) || 0)
     );
-  };
+  }
 
-  checkForScrollToTop = () => {
-    const { distance } = this.props;
-    if (
-      document.body.scrollTop > distance
-      || document.documentElement.scrollTop > distance
-    ) {
-      this.setState({
-        showScrollToTop: true
-      });
-    } else {
-      this.setState({
-        showScrollToTop: false
-      });
-    }
-  };
-
-  scrollUp = () => {
+  function scrollUp() {
     const { requestAnimationFrame } = window;
-
-    const initScrollTop = this.getScrollTop();
-
-    this.setScrollTop(initScrollTop - 20);
-
-    const { showScrollToTop } = this.state;
-    if (!showScrollToTop) {
+    const initScrollTop = getScrollTop();
+    setScrollTop(initScrollTop - 20);
+    if (!showScrollButton) {
       return;
     }
     if (initScrollTop > 1) {
-      requestAnimationFrame(this.scrollUp);
+      requestAnimationFrame(scrollUp);
     }
-  };
-
-  render() {
-    const { showScrollToTop } = this.state;
-    return (
-      <HeaderView
-        scrollToTop={this.scrollUp}
-        showScrollToTop={showScrollToTop}
-      />
-    );
   }
-}
+
+  return (
+    <HeaderView
+      scrollToTop={scrollUp}
+      showScrollButton={showScrollButton}
+    />
+  );
+};
+export default Header;
 
 Header.propTypes = {
   distance: PropTypes.number,

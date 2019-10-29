@@ -4,7 +4,6 @@ import Portfolio from './components/Portfolio';
 import About from './components/About';
 import GetInTouch from './components/GetInTouch';
 import Table from './components/Table';
-import RandomPlanetsOrCharacters from './components/RandomPlanetsOrCharacters';
 import Hero from './components/Hero';
 
 import ChoicePlanetOrPerson from './components/ChoicePlanetOrPerson';
@@ -12,7 +11,7 @@ import ChoicePlanetOrPerson from './components/ChoicePlanetOrPerson';
 const HomeView = (
   {
     person, tableItems, tableLabel, tableYear, onTableLabelChange, onTableYearChange, onTableSubmit, onSortTable,
-    planetButtons, planetLoading, planetInfo, userChoice,
+    planetButtons, userChoice,
     heroItems, heroError, loadingHero
   }
 ) => {
@@ -28,12 +27,6 @@ const HomeView = (
         onTableLabelChange={onTableLabelChange}
         onTableYearChange={onTableYearChange}
         onTableSubmit={onTableSubmit}
-      />
-      <RandomPlanetsOrCharacters
-        planetButtons={planetButtons}
-        planetLoading={planetLoading}
-        planetInfo={planetInfo}
-        userChoice={userChoice}
       />
       <ChoicePlanetOrPerson
         planetButtons={planetButtons}
@@ -66,8 +59,6 @@ HomeView.propTypes = {
   onTableSubmit: PropTypes.func,
 
   planetButtons: PropTypes.arrayOf(PropTypes.node),
-  planetLoading: PropTypes.bool,
-  planetInfo: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
   userChoice: PropTypes.string,
 
   heroItems: PropTypes.arrayOf(PropTypes.node),
@@ -88,8 +79,6 @@ HomeView.defaultProps = {
   onTableSubmit: undefined,
 
   planetButtons: [],
-  planetLoading: false,
-  planetInfo: {},
   userChoice: '',
 
   heroItems: [],

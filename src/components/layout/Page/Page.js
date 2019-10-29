@@ -1,40 +1,28 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import PageView from './PageView';
+import { ThemeContext } from '../../../сontext/ThemeContext';
 
-import { ThemeProvider } from '../../../сontext/ThemeContext';
+const Page = (props) => {
+  const [theme, setTheme] = useState('light');
+  const { children } = props;
 
-export default class Page extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      theme: 'light'
-    };
-  }
-
-  toggleStyle = () => {
-    const { theme } = this.state;
-    this.setState({
-      theme: theme === 'light' ? 'dark' : 'light'
-    });
+  const toggleStyle = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
   };
 
-  render() {
-    const { children } = this.props;
-    const { theme } = this.state;
-    return (
-      <ThemeProvider value={{ theme, changeTheme: this.toggleStyle }}>
-        <Header />
-        <PageView childrens={children} />
-        <Footer />
-      </ThemeProvider>
-    );
-  }
-}
-
+  return (
+    <ThemeContext.Provider value={{ theme, changeTheme: toggleStyle }}>
+      <Header />
+      <PageView childrens={children} />
+      <Footer />
+    </ThemeContext.Provider>
+  );
+};
+export default Page;
 Page.propTypes = {
   children: PropTypes.node.isRequired
 };

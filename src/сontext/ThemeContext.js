@@ -1,5 +1,3 @@
-import React from 'react';
+import { createContext } from 'react';
 
-const { Provider: ThemeProvider, Consumer: ThemeConsumer } = React.createContext();
-
-export { ThemeConsumer, ThemeProvider };
+export const ThemeContext = createContext(null);
